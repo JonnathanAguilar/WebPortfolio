@@ -9,59 +9,77 @@ export interface Props {
 const { experiences, title } = Astro.props;
 ---
 
-<section id="experience" class="py-20 bg-white dark:bg-gray-900">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
-      {title}
-    </h2>
+<section id="experience" class="py-24 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4 lg:px-8">
     
-    <div class="max-w-4xl mx-auto relative">
-      {/* Línea de tiempo vertical */}
-      <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary-500 via-secondary-500 to-primary-500"></div>
-      
-      {experiences.map((exp, index) => (
-        <div 
-          class={`relative mb-12 flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-          data-aos="fade-up"
-          data-aos-delay={index * 100}
-        >
-          {/* Marcador de tiempo */}
-          <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 bg-primary-500 rounded-full border-4 border-white dark:border-gray-900 z-10 -translate-y-1"></div>
-          
-          {/* Contenido */}
-          <div class={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'} pl-12 md:pl-0`}>
-            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all hover:-translate-y-1">
-              <div class="flex flex-wrap justify-between items-start mb-3 gap-2">
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white">{exp.title}</h3>
-                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-sm rounded-full font-semibold">
-                  {exp.period}
-                </span>
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white inline-block relative">
+        {title}
+        <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-primary-500 rounded-full"></span>
+      </h2>
+    </div>
+    
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-5xl mx-auto relative">
+        
+        {/* Línea de tiempo vertical central */}
+        <div class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gray-100 dark:bg-gray-800 rounded-full"></div>
+        
+        {experiences.map((exp, index) => (
+          <div 
+            class={`relative mb-12 flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-5 h-5 bg-primary-500 rounded-full border-4 border-white dark:border-gray-900 z-10 mt-6 md:mt-8"></div>
+            
+            {/* Contenido de la tarjeta */}
+            <div class={`w-full md:w-1/2 pl-16 md:pl-0 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
+              <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6 md:p-8 border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:border-primary-200 dark:hover:border-primary-800 transition-all duration-300 group">
+                
+                <div class="flex flex-col xl:flex-row xl:justify-between xl:items-start mb-4 gap-2">
+                  <div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                      {exp.title}
+                    </h3>
+                    <p class="text-primary-600 dark:text-primary-400 font-semibold mt-1">
+                      {exp.company}
+                    </p>
+                  </div>
+                  <span class="inline-block px-4 py-1.5 bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-300 text-xs rounded-full font-bold uppercase tracking-wider border border-gray-200 dark:border-gray-700 w-max">
+                    {exp.period}
+                  </span>
+                </div>
+                
+                <p class="text-gray-600 dark:text-gray-300 mb-6 text-sm md:text-base font-medium border-l-2 border-gray-200 dark:border-gray-600 pl-3 text-justify">
+                  {exp.description}
+                </p>
+                
+                <ul class="space-y-3 text-justify">
+                  {exp.achievements.map((achievement) => (
+                    <li class="flex items-start gap-3 text-gray-600 dark:text-gray-400 text-sm">
+                      <i class="fas fa-check text-primary-500 mt-1 text-[10px] bg-primary-50 dark:bg-primary-900/30 p-1 rounded-full shrink-0"></i>
+                      <span class="leading-relaxed">{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                {exp.link && (
+                  <a 
+                    href={exp.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 mt-6 text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                  >
+                    <span>Visitar Sitio</span>
+                    <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                  </a>
+                )}
               </div>
-              <p class="text-primary-600 dark:text-primary-400 font-semibold mb-3">{exp.company}</p>
-              <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">{exp.description}</p>
-              <ul class="space-y-2">
-                {exp.achievements.map((achievement, achIndex) => (
-                  <li key={achIndex} class="flex items-start gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                    <i class="fas fa-check-circle text-primary-500 mt-1 text-xs shrink-0"></i>
-                    <span>{achievement}</span>
-                  </li>
-                ))}
-              </ul>
-              {exp.link && (
-                <a 
-                  href={exp.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 mt-4 text-primary-600 dark:text-primary-400 hover:gap-3 transition-all"
-                >
-                  <span>Ver proyecto</span>
-                  <i class="fas fa-external-link-alt text-xs"></i>
-                </a>
-              )}
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>

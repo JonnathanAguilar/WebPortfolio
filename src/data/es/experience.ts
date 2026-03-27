@@ -4,27 +4,28 @@ export const experienceData: ExperienceData = {
   title: "Experiencia Laboral",
   experiences: [
     {
-      title: "Técnico de Investigación",
+      title: "Personal de Apoyo",
       company: "Universidad de Cuenca",
       period: "Dic 2025 – Mar 2026",
-      description: "Desarrollo y mantenimiento de sistemas de información geográfica para investigación urbana.",
+      description: "Desarrollo de SIG para investigación urbana.",
       achievements: [
-        "Desarrollo y mantenimiento del Visor SIG de Gentrificación, implementando funcionalidades avanzadas como catálogos WMS externos y gestión dinámica de capas.",
-        "Creación de una interfaz tipo 'Wizard' para la carga y procesamiento de capas GeoTIFF multicriterio, optimizando el flujo de trabajo del modelo predictivo.",
-        "Administración y actualización del servidor GeoServer (v2.24.3 a v2.27.4) y configuración del entorno de despliegue mediante Docker y Nginx.",
-        "Elaboración de la documentación técnica y manuales de usuario para la administración del sistema SIG."
-      ]
+        "Desarrollo del Visor SIG de Gentrificación con integración de catálogos WMS y gestión dinámica de capas.",
+        "Creación de interfaz interactiva para el procesamiento multicriterio de archivos GeoTIFF.",
+        "Administración de GeoServer y configuración de entorno de despliegue automatizado con Docker y Nginx.",
+        "Redacción de manuales técnicos y documentación para la administración del sistema."
+      ],
+      link: "https://geonode.ucuenca.edu.ec/gentrificacion/"
     },
     {
       title: "Desarrollador Web Freelance",
       company: "Consultorios Clínica España",
       period: "Feb 2026",
-      description: "Desarrollo de plataforma web corporativa con tecnologías modernas.",
+      description: "Desarrollo de plataforma corporativa médica.",
       achievements: [
-        "Diseño y desarrollo integral de la plataforma web corporativa utilizando Astro y Tailwind CSS, logrando un rendimiento óptimo y una carga instantánea.",
-        "Integración de un Headless CMS (Contentful) para permitir a la administración gestionar de forma autónoma el catálogo de especialistas, servicios y horarios de atención.",
-        "Configuración del pipeline de despliegue continuo (CI/CD) en Cloudflare Pages, asegurando alta disponibilidad y seguridad mediante certificados SSL y optimización de red.",
-        "Implementación de estrategias de SEO local y optimización de metadatos, incrementando la visibilidad digital de los consultorios en los motores de búsqueda para la ciudad de Cuenca."
+        "Desarrollo frontend de alto rendimiento utilizando Astro y Tailwind CSS.",
+        "Integración de Headless CMS (Contentful) para gestión autónoma de médicos, servicios y horarios.",
+        "Configuración de CI/CD en Cloudflare Pages, garantizando alta disponibilidad y seguridad (SSL).",
+        "Implementación de SEO local, incrementando la visibilidad orgánica de la clínica en la ciudad."
       ],
       link: "https://consultoriosclinicaespana.med.ec/"
     },
@@ -32,12 +33,12 @@ export const experienceData: ExperienceData = {
       title: "Ayudante de Investigación",
       company: "Universidad de Cuenca",
       period: "Mar 2025 – Ago 2025",
-      description: "Proyecto CLIAS - IA en Promoción de Automuestreo para Detección Temprana de VPH.",
+      description: "Proyecto CLIAS - Aplicación de IA en la salud.",
       achievements: [
-        "Desarrollo de módulos de geolocalización y visualización de datos espaciales en la aplicación móvil SISA, mejorando el acceso a información sobre centros de salud.",
-        "Implementación de interfaces web administrativas para la gestión descentralizada de datos geoespaciales, optimizando los flujos de actualización en tiempo real.",
-        "Diseño y desarrollo del sitio web oficial del proyecto CLIAS utilizando HTML, CSS y JavaScript.",
-        "Elaboración de la documentación técnica integral del sistema con Docusaurus, dirigida a equipos de desarrollo y usuarios institucionales."
+        "Desarrollo de módulos de geolocalización de centros de salud en la app móvil SISA.",
+        "Implementación de interfaces web para la gestión descentralizada de datos geoespaciales.",
+        "Diseño y construcción del sitio web oficial del proyecto (HTML, CSS, JS).",
+        "Creación de la documentación técnica integral utilizando Docusaurus."
       ],
       link: "https://clias.ucuenca.edu.ec/"
     },
@@ -47,21 +48,21 @@ export const experienceData: ExperienceData = {
       period: "Feb 2025 – Jun 2025",
       description: "Transformación Digital de la Gestión Académica.",
       achievements: [
-        "Validación de la integridad y consistencia de datos migrados entre sistemas académicos, desarrollando scripts de verificación y registros de incidencias para garantizar la calidad del proceso.",
-        "Colaboración en la configuración y parametrización del sistema académico NOVA, incluyendo estructuras de datos, matrices de control y ejecución de pruebas funcionales.",
-        "Elaboración de documentación técnica y diagramas de flujo de procesos académicos, utilizando herramientas de modelado para respaldar la transformación digital institucional.",
-        "Participación en la planificación y seguimiento del proyecto de Transformación Digital de la Gestión Académica, aplicando metodologías ágiles en el ciclo de desarrollo y despliegue."
+        "Validación de integridad de datos migrados mediante scripts automatizados.",
+        "Parametrización funcional del sistema académico institucional NOVA.",
+        "Modelado de diagramas de flujo y documentación de procesos académicos.",
+        "Aplicación de metodologías ágiles en el ciclo de vida del proyecto."
       ]
     },
     {
       title: "Ayudante de Investigación",
       company: "Universidad de Cuenca",
       period: "Sep 2024 – Feb 2025",
-      description: "Propuesta Metodológica para Planificación de Infraestructura de Salud con Enfoque en Telesalud.",
+      description: "Planificación de Infraestructura de Salud con Telesalud.",
       achievements: [
-        "Desarrollo y optimización de herramientas en MapStore para la visualización y análisis de datos geoespaciales, garantizando la interoperabilidad con GeoNode y otras plataformas SIG.",
-        "Implementación de metodologías de análisis y gestión de datos geoespaciales en entornos de ciudades inteligentes, apoyando la planificación de infraestructura de salud basada en datos.",
-        "Colaboración en el desarrollo del marco metodológico del proyecto, aplicando tecnologías geoespaciales y principios de ingeniería de software."
+        "Optimización de herramientas en MapStore para visualización y análisis geoespacial.",
+        "Gestión de datos espaciales para apoyar la planificación de infraestructura.",
+        "Desarrollo del marco metodológico aplicando principios de ingeniería de software para un proceso paso a paso perfecto."
       ]
     }
   ]
