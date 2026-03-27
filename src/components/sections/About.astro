@@ -8,76 +8,87 @@ export interface Props {
 const { data } = Astro.props;
 ---
 
-<section id="about" class="py-20 bg-white dark:bg-gray-900">
-  <div class="container mx-auto px-4">
-    <div class="max-w-5xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
-      <div class="grid md:grid-cols-2">
-        {/* Left Column - About Text */}
-        <div class="p-8 md:p-10">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-white relative inline-block">
+<section id="about" class="py-24 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700">
+      <div class="grid lg:grid-cols-12">
+        
+        {/* About Text */}
+        <div class="lg:col-span-7 p-8 md:p-12" data-aos="fade-right">
+          <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800 dark:text-white relative inline-block">
             {data.title}
-            <span class="absolute bottom-0 left-0 w-12 h-1 bg-primary-500 rounded-full mt-2"></span>
+            <span class="absolute -bottom-2 left-0 w-16 h-1.5 bg-primary-500 rounded-full"></span>
           </h2>
-          <div class="space-y-4 text-gray-600 dark:text-gray-300">
-            <p>{data.greeting}</p>
+          
+          <div class="space-y-6 text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+            <p class="font-medium text-gray-800 dark:text-gray-200 text-xl">{data.greeting}</p>
             <p>{data.description1}</p>
             <p>{data.description2}</p>
             <p>{data.description3}</p>
           </div>
         </div>
         
-        {/* Right Column - Basic Info */}
-        <div class="bg-linear-to-br from-primary-50 to-secondary-50 dark:from-gray-700 dark:to-gray-800 p-8 md:p-10">
-          <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Información Básica</h3>
-          <div class="space-y-4">
-            <div class="flex items-start gap-3">
-              <i class="fas fa-user text-primary-500 mt-1 w-5"></i>
-              <div>
-                <p class="font-semibold text-gray-700 dark:text-gray-200">Edad</p>
-                <p class="text-gray-600 dark:text-gray-400">{data.basicInfo.age} años</p>
+        {/* Basic Info */}
+        <div class="lg:col-span-5 bg-linear-to-br from-primary-50 to-primary-100/50 dark:from-gray-700 dark:to-gray-800/80 p-8 md:p-12 border-t lg:border-t-0 lg:border-l border-gray-100 dark:border-gray-600 flex flex-col justify-center" data-aos="fade-left" data-aos-delay="100">
+          <h3 class="text-2xl font-bold mb-8 text-gray-800 dark:text-white">Información Básica</h3>
+          
+          <div class="space-y-6">
+            <div class="flex items-center gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                <i class="fas fa-envelope text-primary-500 text-lg"></i>
               </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <i class="fas fa-envelope text-primary-500 mt-1 w-5"></i>
               <div>
-                <p class="font-semibold text-gray-700 dark:text-gray-200">Email</p>
-                <a href={`mailto:${data.basicInfo.email}`} class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition">
+                <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Email</p>
+                <a href={`mailto:${data.basicInfo.email}`} class="text-gray-800 dark:text-gray-200 font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors break-all">
                   {data.basicInfo.email}
                 </a>
               </div>
             </div>
-            <div class="flex items-start gap-3">
-              <i class="fas fa-phone-alt text-primary-500 mt-1 w-5"></i>
+
+            <div class="flex items-center gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                <i class="fas fa-phone-alt text-primary-500 text-lg"></i>
+              </div>
               <div>
-                <p class="font-semibold text-gray-700 dark:text-gray-200">Teléfono</p>
-                <a href={`tel:${data.basicInfo.phone.replace(/\s/g, '')}`} class="text-gray-600 dark:text-gray-400 hover:text-primary-600 transition">
+                <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Teléfono</p>
+                <a href={`tel:${data.basicInfo.phone.replace(/\s/g, '')}`} class="text-gray-800 dark:text-gray-200 font-medium hover:text-primary-600 transition-colors">
                   {data.basicInfo.phone}
                 </a>
               </div>
             </div>
-            <div class="flex items-start gap-3">
-              <i class="fas fa-map-marker-alt text-primary-500 mt-1 w-5"></i>
+
+            <div class="flex items-center gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                <i class="fas fa-map-marker-alt text-primary-500 text-lg"></i>
+              </div>
               <div>
-                <p class="font-semibold text-gray-700 dark:text-gray-200">Dirección</p>
-                <p class="text-gray-600 dark:text-gray-400">{data.basicInfo.address}</p>
+                <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Ubicación</p>
+                <p class="text-gray-800 dark:text-gray-200 font-medium">{data.basicInfo.address}</p>
               </div>
             </div>
-            <div class="flex items-start gap-3">
-              <i class="fas fa-language text-primary-500 mt-1 w-5"></i>
+
+            <div class="flex items-center gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                <i class="fas fa-language text-primary-500 text-lg"></i>
+              </div>
               <div>
-                <p class="font-semibold text-gray-700 dark:text-gray-200">Idiomas</p>
-                <p class="text-gray-600 dark:text-gray-400">{data.basicInfo.languages}</p>
+                <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Idiomas</p>
+                <p class="text-gray-800 dark:text-gray-200 font-medium">{data.basicInfo.languages}</p>
               </div>
             </div>
-            <div class="flex items-start gap-3">
-              <i class="fab fa-orcid text-primary-500 mt-1 w-5"></i>
+
+            <div class="flex items-center gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                <i class="fab fa-orcid text-primary-500 text-lg"></i>
+              </div>
               <div>
-                <p class="font-semibold text-gray-700 dark:text-gray-200">ORCID</p>
-                <a href={`https://orcid.org/${data.basicInfo.orcid}`} target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 transition">
+                <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">ORCID</p>
+                <a href={`https://orcid.org/${data.basicInfo.orcid}`} target="_blank" class="text-gray-800 dark:text-gray-200 font-medium hover:text-primary-600 transition-colors">
                   {data.basicInfo.orcid}
                 </a>
               </div>
             </div>
+            
           </div>
         </div>
       </div>

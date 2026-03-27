@@ -15,7 +15,6 @@ export interface AboutData {
   description2: string;
   description3: string;
   basicInfo: {
-    age: string;
     email: string;
     phone: string;
     address: string;
