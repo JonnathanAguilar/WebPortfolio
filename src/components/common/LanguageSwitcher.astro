@@ -1,0 +1,42 @@
+---
+export interface Props {
+  class?: string;
+  showTextOnMobile?: boolean;
+}
+
+const { class: className = "", showTextOnMobile = false } = Astro.props;
+---
+
+<button 
+  class={`lang-switcher-btn flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900 transition ${className}`}
+  title="Cambiar a Inglés"
+>
+  <img src="https://flagcdn.com/w20/gb.png" width="20" alt="English" class="rounded-xs shadow-sm" />
+  
+  {/* Texto: EN para escritorio, 'English' para móvil (dependiendo de las props) */}
+  <span class="text-sm font-medium">
+    {showTextOnMobile ? "English" : "EN"}
+  </span>
+</button>
+
+<script>
+  // Ejecutamos la lógica cuando el DOM esté listo
+  const setupLanguageAlert = () => {
+    const buttons = document.querySelectorAll('.lang-switcher-btn');
+    
+    buttons.forEach(btn => {
+      // Removemos eventos previos para evitar que la alerta salga doble si Astro hace un hot-reload
+      btn.removeEventListener('click', showComingSoonAlert);
+      btn.addEventListener('click', showComingSoonAlert);
+    });
+  };
+
+  const showComingSoonAlert = (e: Event) => {
+    e.preventDefault(); // Evita cualquier comportamiento por defecto
+    alert("🚀 ¡La versión en Inglés estará disponible próximamente! \n\n The English version is coming soon!");
+  };
+
+  // Inicialización
+  setupLanguageAlert();
+  document.addEventListener('astro:after-swap', setupLanguageAlert);
+</script>

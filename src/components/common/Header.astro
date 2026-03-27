@@ -1,8 +1,9 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 
-const currentPath = Astro.url.pathname;
-const isSpanish = currentPath.includes('/es/') || currentPath === '/es/' || currentPath === '/';
+// Ya no necesitamos la lógica de isSpanish aquí porque el LanguageSwitcher 
+// se encargará de avisar que el inglés viene pronto.
 ---
 
 <header>
@@ -10,7 +11,7 @@ const isSpanish = currentPath.includes('/es/') || currentPath === '/es/' || curr
     <div class="container mx-auto px-4 py-4">
       <div class="flex justify-between items-center">
         {/* Logo */}
-        <a href={isSpanish ? "/es" : "/en"} class="text-2xl font-bold bg-linear-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent hover:opacity-80 transition">
+        <a href="/es/" class="text-2xl font-bold bg-linear-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent hover:opacity-80 transition">
           Jonnathan Aguilar
         </a>
         
@@ -27,11 +28,8 @@ const isSpanish = currentPath.includes('/es/') || currentPath === '/es/' || curr
           <a href="#portfolio" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">Proyectos</a>
           <a href="#contact" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">Contacto</a>
           
-          {/* Language Switcher */}
-          <a href={isSpanish ? "/en" : "/es"} class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900 transition">
-            <img src={isSpanish ? "https://flagcdn.com/w20/gb.png" : "https://flagcdn.com/w20/es.png"} width="20" alt={isSpanish ? "English" : "Español"} />
-            <span class="text-sm font-medium">{isSpanish ? "EN" : "ES"}</span>
-          </a>
+          {/* Language Switcher de Escritorio */}
+          <LanguageSwitcher />
           
           {/* Theme Toggle de Escritorio */}
           <ThemeToggle />
@@ -39,7 +37,7 @@ const isSpanish = currentPath.includes('/es/') || currentPath === '/es/' || curr
       </div>
       
       {/* Mobile Menu */}
-      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-100 dark:border-gray-800 pt-4">
         <div class="flex flex-col space-y-3">
           <a href="#about" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">Sobre Mí</a>
           <a href="#skills" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">Habilidades</a>
@@ -47,11 +45,9 @@ const isSpanish = currentPath.includes('/es/') || currentPath === '/es/' || curr
           <a href="#portfolio" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">Proyectos</a>
           <a href="#contact" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">Contacto</a>
           
-          <div class="flex gap-4 pt-2">
-            <a href={isSpanish ? "/en" : "/es"} class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-              <img src={isSpanish ? "https://flagcdn.com/w20/gb.png" : "https://flagcdn.com/w20/es.png"} width="20" alt={isSpanish ? "English" : "Español"} />
-              <span class="text-sm">{isSpanish ? "English" : "Español"}</span>
-            </a>
+          <div class="flex gap-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+            {/* Language Switcher de Móvil (Muestra el texto "English") */}
+            <LanguageSwitcher showTextOnMobile={true} />
             
             {/* Theme Toggle de Móvil */}
             <ThemeToggle />
@@ -95,5 +91,4 @@ const isSpanish = currentPath.includes('/es/') || currentPath === '/es/' || curr
       }
     });
   });
-  
 </script>
