@@ -1,4 +1,16 @@
 ---
-export const prerender = false;
-return Astro.redirect('/es/', 301);
 ---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0;url=/es/">
+    <title>Jonnathan Aguilar | Desarrollador Web</title>
+    <script is:inline>
+        window.location.pathname = '/es/';
+    </script>
+</head>
+<body>
+</body>
+</html>
