@@ -12,5 +12,5 @@
 
 [[redirects]]
   from = "/"
-  to = "/es"
+  to = "/es/"
   status = 302

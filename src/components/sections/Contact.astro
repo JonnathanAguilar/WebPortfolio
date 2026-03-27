@@ -111,52 +111,52 @@ const { email, phone, address, orcid } = Astro.props;
         </div>
         
         {/* Lado Derecho: Información de contacto */}
-        <div class="w-full lg:w-2/5 bg-linear-to-br from-gray-900 to-gray-800 dark:from-gray-950 dark:to-gray-900 p-8 md:p-12 text-white flex flex-col" data-aos="fade-left">
-          <h3 class="text-2xl font-bold mb-8">Información</h3>
+        <div class="w-full lg:w-2/5 bg-linear-to-br from-primary-500 to-secondary-500 dark:from-gray-900 dark:to-gray-800 p-8 md:p-12 text-white flex flex-col transition-colors duration-300" data-aos="fade-left">
+          <h3 class="text-2xl font-bold mb-8 text-white">Información</h3>
           
           <div class="space-y-8 grow">
             
             <div class="flex items-center gap-5 group">
-              <div class="w-12 h-12 rounded-xl bg-white/10 group-hover:bg-primary-500 flex items-center justify-center shrink-0 transition-colors duration-300">
+              <div class="w-12 h-12 rounded-xl bg-white/20 dark:bg-white/10 group-hover:bg-white group-hover:text-primary-600 dark:group-hover:bg-primary-500 dark:group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300">
                 <i class="fas fa-map-marker-alt text-lg"></i>
               </div>
               <div>
-                <p class="font-semibold text-gray-400 text-sm uppercase tracking-wide mb-1">Ubicación</p>
-                <p class="font-medium">{address}</p>
+                <p class="font-semibold text-white/80 dark:text-gray-400 text-sm uppercase tracking-wide mb-1">Ubicación</p>
+                <p class="font-medium text-white">{address}</p>
               </div>
             </div>
             
             <div class="flex items-center gap-5 group">
-              <div class="w-12 h-12 rounded-xl bg-white/10 group-hover:bg-primary-500 flex items-center justify-center shrink-0 transition-colors duration-300">
+              <div class="w-12 h-12 rounded-xl bg-white/20 dark:bg-white/10 group-hover:bg-white group-hover:text-primary-600 dark:group-hover:bg-primary-500 dark:group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300">
                 <i class="fas fa-phone-alt text-lg"></i>
               </div>
               <div>
-                <p class="font-semibold text-gray-400 text-sm uppercase tracking-wide mb-1">Teléfono / WhatsApp</p>
-                <a href={`tel:${phone.replace(/\s/g, '')}`} class="font-medium hover:text-primary-400 transition-colors">
+                <p class="font-semibold text-white/80 dark:text-gray-400 text-sm uppercase tracking-wide mb-1">Teléfono / WhatsApp</p>
+                <a href={`tel:${phone.replace(/\s/g, '')}`} target="_blank" class="font-medium text-white hover:text-white/80 dark:hover:text-primary-400 transition-colors">
                   {phone}
                 </a>
               </div>
             </div>
             
             <div class="flex items-center gap-5 group">
-              <div class="w-12 h-12 rounded-xl bg-white/10 group-hover:bg-primary-500 flex items-center justify-center shrink-0 transition-colors duration-300">
+              <div class="w-12 h-12 rounded-xl bg-white/20 dark:bg-white/10 group-hover:bg-white group-hover:text-primary-600 dark:group-hover:bg-primary-500 dark:group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300">
                 <i class="fas fa-envelope text-lg"></i>
               </div>
               <div>
-                <p class="font-semibold text-gray-400 text-sm uppercase tracking-wide mb-1">Email</p>
-                <a href={`mailto:${email}`} class="font-medium hover:text-primary-400 transition-colors break-all">
+                <p class="font-semibold text-white/80 dark:text-gray-400 text-sm uppercase tracking-wide mb-1">Email</p>
+                <a href={`mailto:${email}`} class="font-medium text-white hover:text-white/80 dark:hover:text-primary-400 transition-colors break-all">
                   {email}
                 </a>
               </div>
             </div>
             
             <div class="flex items-center gap-5 group">
-              <div class="w-12 h-12 rounded-xl bg-white/10 group-hover:bg-primary-500 flex items-center justify-center shrink-0 transition-colors duration-300">
+              <div class="w-12 h-12 rounded-xl bg-white/20 dark:bg-white/10 group-hover:bg-white group-hover:text-primary-600 dark:group-hover:bg-primary-500 dark:group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300">
                 <i class="fab fa-orcid text-lg"></i>
               </div>
               <div>
-                <p class="font-semibold text-gray-400 text-sm uppercase tracking-wide mb-1">ORCID</p>
-                <a href={`https://orcid.org/${orcid}`} target="_blank" rel="noopener noreferrer" class="font-medium hover:text-primary-400 transition-colors">
+                <p class="font-semibold text-white/80 dark:text-gray-400 text-sm uppercase tracking-wide mb-1">ORCID</p>
+                <a href={`https://orcid.org/${orcid}`} target="_blank" rel="noopener noreferrer" class="font-medium text-white hover:text-white/80 dark:hover:text-primary-400 transition-colors">
                   {orcid}
                 </a>
               </div>
@@ -165,19 +165,19 @@ const { email, phone, address, orcid } = Astro.props;
           </div>
           
           {/* Redes sociales */}
-          <div class="mt-12 pt-8 border-t border-white/10">
-            <p class="font-semibold text-gray-400 text-sm uppercase tracking-wide mb-4 text-center lg:text-left">Sígueme</p>
+          <div class="mt-12 pt-8 border-t border-white/20 dark:border-white/10">
+            <p class="font-semibold text-white/80 dark:text-gray-400 text-sm uppercase tracking-wide mb-4 text-center lg:text-left">Sígueme</p>
             <div class="flex gap-4 justify-center lg:justify-start">
-              <a href="https://github.com/JonnathanAguilar" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 hover:bg-white hover:text-gray-900 flex items-center justify-center transition-all duration-300">
+              <a href="https://github.com/JonnathanAguilar" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/30 dark:border-white/20 hover:bg-white hover:text-gray-900 dark:hover:bg-white dark:hover:text-gray-900 flex items-center justify-center transition-all duration-300 text-white">
                 <i class="fab fa-github text-lg"></i>
               </a>
-              <a href="https://www.linkedin.com/in/jonnathan-aguilar-lalvay" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 hover:bg-[#0A66C2] hover:border-transparent flex items-center justify-center transition-all duration-300">
+              <a href="https://www.linkedin.com/in/jonnathan-aguilar-lalvay" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/30 dark:border-white/20 hover:bg-[#0A66C2] hover:border-transparent flex items-center justify-center transition-all duration-300 text-white">
                 <i class="fab fa-linkedin-in text-lg"></i>
               </a>
-              <a href="https://x.com/jaguilarlalvay" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 hover:bg-black hover:border-transparent flex items-center justify-center transition-all duration-300">
+              <a href="https://x.com/jaguilarlalvay" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/30 dark:border-white/20 hover:bg-black hover:border-transparent flex items-center justify-center transition-all duration-300 text-white">
                 <i class="fa-brands fa-twitter text-lg"></i>
               </a>
-              <a href="https://www.instagram.com/jonnathan_aguilarl" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 hover:bg-[#E1306C] hover:border-transparent flex items-center justify-center transition-all duration-300">
+              <a href="https://www.instagram.com/jonnathan_aguilarl" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/30 dark:border-white/20 hover:bg-[#E1306C] hover:border-transparent flex items-center justify-center transition-all duration-300 text-white">
                 <i class="fab fa-instagram text-lg"></i>
               </a>
             </div>
