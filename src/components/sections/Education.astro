@@ -1,5 +1,4 @@
 ---
-// src/components/sections/Education.astro
 import type { EducationData } from '../../data/types';
 
 export interface Props {
@@ -9,29 +8,46 @@ export interface Props {
 const { data } = Astro.props;
 ---
 
-<section id="education" class="py-20 bg-white dark:bg-gray-900">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
-      {data.title}
-    </h2>
+<section id="education" class="py-24 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4 lg:px-8">
     
-    <div class="max-w-4xl mx-auto space-y-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white inline-block relative">
+        {data.title}
+        <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-primary-500 rounded-full"></span>
+      </h2>
+    </div>
+    
+    <div class="max-w-4xl mx-auto space-y-8">
       {data.education.map((edu, index) => (
         <div 
-          class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1"
+          class="bg-white dark:bg-gray-800 rounded-3xl p-6 md:p-8 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:border-primary-200 dark:hover:border-primary-800 transition-all duration-300 group flex flex-col md:flex-row gap-6 items-start"
           data-aos="fade-up"
           data-aos-delay={index * 100}
         >
-          <div class="grid md:grid-cols-4">
-            <div class="md:col-span-1 bg-linear-to-br from-primary-500 to-secondary-500 p-6 flex flex-col items-center justify-center text-white">
-              <i class={`fas ${edu.type === 'university' ? 'fa-university' : 'fa-microchip'} text-4xl mb-3`}></i>
-              <p class="text-sm text-center font-semibold">{edu.period}</p>
+          {/* Contenedor del Icono */}
+          <div class="shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-primary-50 dark:bg-gray-700 flex items-center justify-center text-primary-500 text-3xl md:text-4xl shadow-sm group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
+            <i class={`fas ${edu.type === 'university' ? 'fa-graduation-cap' : 'fa-microchip'}`}></i>
+          </div>
+          
+          {/* Contenido de la formación */}
+          <div class="flex-1 w-full">
+            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-2 gap-3">
+              <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {edu.degree}
+              </h3>
+              <span class="inline-block px-4 py-1.5 bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-300 text-xs rounded-full font-bold uppercase tracking-wider border border-gray-200 dark:border-gray-700 w-max shrink-0">
+                {edu.period}
+              </span>
             </div>
-            <div class="md:col-span-3 p-6">
-              <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">{edu.degree}</h3>
-              <p class="text-primary-600 dark:text-primary-400 font-semibold mb-3">{edu.institution}</p>
-              <p class="text-gray-600 dark:text-gray-300">{edu.description}</p>
-            </div>
+            
+            <p class="text-primary-600 dark:text-primary-400 font-semibold mb-4 text-base md:text-lg">
+              {edu.institution}
+            </p>
+            
+            <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed border-l-2 border-gray-200 dark:border-gray-600 pl-3">
+              {edu.description}
+            </p>
           </div>
         </div>
       ))}

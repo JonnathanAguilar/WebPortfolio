@@ -8,50 +8,66 @@ export interface Props {
 const { data } = Astro.props;
 ---
 
-<section id="certifications" class="py-20 bg-gray-50 dark:bg-gray-800">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
-      {data.title}
-    </h2>
+<section id="certifications" class="py-24 bg-gray-50 dark:bg-gray-800/50">
+  <div class="container mx-auto px-4 lg:px-8">
     
-    <div class="max-w-5xl mx-auto">
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white inline-block relative">
+        {data.title}
+        <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-primary-500 rounded-full"></span>
+      </h2>
+    </div>
+    
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {data.certifications.map((cert, index) => (
           <div 
-            class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all hover:-translate-y-1 group"
+            class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 hover:border-primary-200 dark:hover:border-primary-800 transition-all duration-300 group flex flex-col h-full"
             data-aos="fade-up"
-            data-aos-delay={index * 50}
+            data-aos-delay={index * 100}
           >
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-xl bg-linear-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white text-xl shrink-0">
+            <div class="flex items-start gap-5 grow">
+              
+              <div class="w-14 h-14 rounded-2xl bg-primary-50 dark:bg-gray-700 flex items-center justify-center text-primary-500 text-2xl shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                 <i class="fas fa-certificate"></i>
               </div>
-              <div class="flex-1">
-                <h3 class="font-bold text-gray-800 dark:text-white mb-1 line-clamp-2">{cert.name}</h3>
-                <p class="text-sm text-primary-600 dark:text-primary-400 mb-2">{cert.issuer}</p>
-                <div class="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400">
-                  <span class="flex items-center gap-1">
-                    <i class="far fa-calendar-alt"></i>
+              
+              <div class="flex flex-col h-full w-full">
+                <h3 class="font-bold text-gray-800 dark:text-white mb-1.5 line-clamp-2 leading-tight group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  {cert.name}
+                </h3>
+                
+                <p class="text-sm font-semibold text-primary-600 dark:text-primary-400 mb-4">
+                  {cert.issuer}
+                </p>
+                
+                <div class="flex flex-wrap gap-2.5 text-xs text-gray-500 dark:text-gray-400 font-medium mb-4">
+                  <span class="flex items-center gap-1.5 bg-gray-50 dark:bg-gray-900/50 px-2.5 py-1 rounded-md border border-gray-100 dark:border-gray-700">
+                    <i class="far fa-calendar-alt text-primary-400"></i>
                     {cert.date}
                   </span>
                   {cert.hours && (
-                    <span class="flex items-center gap-1">
-                      <i class="far fa-clock"></i>
+                    <span class="flex items-center gap-1.5 bg-gray-50 dark:bg-gray-900/50 px-2.5 py-1 rounded-md border border-gray-100 dark:border-gray-700">
+                      <i class="far fa-clock text-primary-400"></i>
                       {cert.hours}
                     </span>
                   )}
                 </div>
-                {cert.link && (
-                  <a 
-                    href={cert.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1 mt-3 text-xs text-primary-600 dark:text-primary-400 hover:gap-2 transition-all"
-                  >
-                    <span>Ver certificado</span>
-                    <i class="fas fa-external-link-alt text-xs"></i>
-                  </a>
-                )}
+                
+                <div class="mt-auto pt-2">
+                  {cert.link && (
+                    <a 
+                      href={cert.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors w-max"
+                    >
+                      <span>Ver credencial</span>
+                      <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                  )}
+                </div>
+                
               </div>
             </div>
           </div>
