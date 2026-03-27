@@ -3,14 +3,4 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/"
-  to = "/es/"
-  status = 302
+  NODE_VERSION = "22"
