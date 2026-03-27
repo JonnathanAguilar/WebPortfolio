@@ -1,0 +1,113 @@
+---
+const currentPath = Astro.url.pathname;
+const isSpanish = currentPath.includes('/es/') || currentPath === '/es' || currentPath === '/';
+---
+
+<header>
+  <nav class="fixed top-0 w-full bg-white dark:bg-gray-900 shadow-lg z-50 transition-colors border-b border-gray-200 dark:border-gray-700">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        {/* Logo */}
+        <a href={isSpanish ? "/es" : "/en"} class="text-2xl font-bold bg-linear-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent hover:opacity-80 transition">
+          J.A.
+        </a>
+        
+        {/* Mobile Menu Button */}
+        <button id="mobile-menu-button" class="md:hidden text-gray-600 dark:text-gray-300">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+        
+        {/* Desktop Navigation */}
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#about" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">Sobre Mí</a>
+          <a href="#skills" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">Habilidades</a>
+          <a href="#experience" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">Experiencia</a>
+          <a href="#portfolio" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">Portafolio</a>
+          <a href="#contact" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">Contacto</a>
+          
+          {/* Language Switcher */}
+          <a href={isSpanish ? "/en" : "/es"} class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900 transition">
+            <img src={isSpanish ? "https://flagcdn.com/w20/gb.png" : "https://flagcdn.com/w20/es.png"} width="20" alt={isSpanish ? "English" : "Español"} />
+            <span class="text-sm font-medium">{isSpanish ? "EN" : "ES"}</span>
+          </a>
+          
+          {/* Theme Toggle */}
+          <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:inline"></i>
+          </button>
+        </div>
+      </div>
+      
+      {/* Mobile Menu */}
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-3">
+          <a href="#about" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">Sobre Mí</a>
+          <a href="#skills" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">Habilidades</a>
+          <a href="#experience" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">Experiencia</a>
+          <a href="#portfolio" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">Portafolio</a>
+          <a href="#contact" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">Contacto</a>
+          
+          <div class="flex gap-4 pt-2">
+            <a href={isSpanish ? "/en" : "/es"} class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+              <img src={isSpanish ? "https://flagcdn.com/w20/gb.png" : "https://flagcdn.com/w20/es.png"} width="20" alt={isSpanish ? "English" : "Español"} />
+              <span class="text-sm">{isSpanish ? "English" : "Español"}</span>
+            </a>
+            <button id="mobile-theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+              <i class="fas fa-moon dark:hidden"></i>
+              <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+  
+  // Smooth scroll
+  document.querySelectorAll('.smooth-scroll').forEach(anchor => {
+    anchor.addEventListener('click', function(this: HTMLElement, e: Event) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId) {
+        const target = document.querySelector(targetId);
+        if (target) {
+        const offset = 80;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        // Close mobile menu if open
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+        }
+        }
+      }
+    });
+  });
+  
+  // Theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+  
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  };
+  
+  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+  if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+</script>

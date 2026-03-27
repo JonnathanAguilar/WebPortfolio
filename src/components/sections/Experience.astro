@@ -1,0 +1,67 @@
+---
+import type { ExperienceItem } from '../../data/types';
+
+export interface Props {
+  experiences: ExperienceItem[];
+  title: string;
+}
+
+const { experiences, title } = Astro.props;
+---
+
+<section id="experience" class="py-20 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
+      {title}
+    </h2>
+    
+    <div class="max-w-4xl mx-auto relative">
+      {/* Línea de tiempo vertical */}
+      <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary-500 via-secondary-500 to-primary-500"></div>
+      
+      {experiences.map((exp, index) => (
+        <div 
+          class={`relative mb-12 flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+        >
+          {/* Marcador de tiempo */}
+          <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 bg-primary-500 rounded-full border-4 border-white dark:border-gray-900 z-10 -translate-y-1"></div>
+          
+          {/* Contenido */}
+          <div class={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'} pl-12 md:pl-0`}>
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all hover:-translate-y-1">
+              <div class="flex flex-wrap justify-between items-start mb-3 gap-2">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white">{exp.title}</h3>
+                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-sm rounded-full font-semibold">
+                  {exp.period}
+                </span>
+              </div>
+              <p class="text-primary-600 dark:text-primary-400 font-semibold mb-3">{exp.company}</p>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">{exp.description}</p>
+              <ul class="space-y-2">
+                {exp.achievements.map((achievement, achIndex) => (
+                  <li key={achIndex} class="flex items-start gap-2 text-gray-600 dark:text-gray-400 text-sm">
+                    <i class="fas fa-check-circle text-primary-500 mt-1 text-xs shrink-0"></i>
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+              {exp.link && (
+                <a 
+                  href={exp.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 mt-4 text-primary-600 dark:text-primary-400 hover:gap-3 transition-all"
+                >
+                  <span>Ver proyecto</span>
+                  <i class="fas fa-external-link-alt text-xs"></i>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

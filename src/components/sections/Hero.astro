@@ -1,0 +1,59 @@
+---
+export interface Props {
+  name: string;
+  title: string;
+  hireText: string;
+  cvText: string;
+  cvLink: string;
+}
+
+const { name, title, hireText, cvText, cvLink } = Astro.props;
+---
+
+<section class="min-h-screen flex items-center justify-center relative bg-linear-to-br from-primary-50 to-secondary-50 dark:from-gray-900 dark:to-gray-800 pt-20">
+  <div class="container mx-auto px-4 py-20 text-center">
+    {/* Profile Image */}
+    <div class="mb-8" data-aos="fade-up">
+      <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-primary-500 shadow-xl">
+        <img src="/images/profile.jpg" alt={name} class="w-full h-full object-cover" />
+      </div>
+    </div>
+    
+    {/* Name */}
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white mb-4" data-aos="fade-up" data-aos-delay="100">
+      {name}
+    </h1>
+    
+    {/* Title */}
+    <p class="text-xl md:text-2xl text-primary-600 dark:text-primary-400 mb-8" data-aos="fade-up" data-aos-delay="200">
+      {title}
+    </p>
+    
+    {/* Buttons */}
+    <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="300">
+      <a href="#contact" class="smooth-scroll px-8 py-3 bg-linear-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-semibold rounded-lg transition-all transform hover:-translate-y-1 shadow-md">
+        {hireText}
+      </a>
+      <a href={cvLink} download class="px-8 py-3 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg transition-all transform hover:-translate-y-1 shadow-md">
+        <i class="fas fa-download mr-2"></i>
+        {cvText}
+      </a>
+    </div>
+    
+    {/* Social Links */}
+    <div class="flex justify-center gap-4 mt-12" data-aos="fade-up" data-aos-delay="400">
+      <a href="https://github.com/JonnathanAguilar" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/jonnathan-aguilar-lalvay" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://x.com/jaguilarlalvay" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.instagram.com/jonnathan_aguilarl" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/common/Header.astro';
+import Hero from '../../components/sections/Hero.astro';
+import About from '../../components/sections/About.astro';
+import Skills from '../../components/sections/Skills.astro';
+import Experience from '../../components/sections/Experience.astro';
+import Portfolio from '../../components/sections/Portfolio.astro';
+import Education from '../../components/sections/Education.astro';
+import Certifications from '../../components/sections/Certifications.astro';
+import Publications from '../../components/sections/Publications.astro';
+import References from '../../components/sections/References.astro';
+import Contact from '../../components/sections/Contact.astro';
+import Footer from '../../components/common/Footer.astro';
+
+import { aboutData } from '../../data/es/about';
+import { skillsData } from '../../data/es/skills';
+import { experienceData } from '../../data/es/experience';
+import { portfolioData } from '../../data/es/portfolio';
+import { educationData } from '../../data/es/education';
+import { certificationsData } from '../../data/es/certifications';
+import { publicationsData } from '../../data/es/publications';
+import { referencesData } from '../../data/es/references';
+---
+
+<Layout title="Jonnathan Aguilar | Ingeniero en Ciencias de la Computación" lang="es">
+  <Header />
+  <Hero 
+    name="Jonnathan Aguilar Lalvay"
+    title="Ingeniero en Ciencias de la Computación | Desarrollador Full-Stack"
+    hireText="Contrátame"
+    cvText="Descargar CV"
+    cvLink="/docs/CV_JonnathanAguilar.pdf"
+  />
+  <About data={aboutData} />
+  <Skills data={skillsData} />
+  <Experience experiences={experienceData.experiences} title={experienceData.title} />
+  <Portfolio projects={portfolioData.projects} title={portfolioData.title} />
+  <Education data={educationData} />
+  <Certifications data={certificationsData} />
+  <Publications data={publicationsData} />
+  <References data={referencesData} />
+  <Contact 
+    email="jaguilarlalvay@gmail.com"
+    phone="+593 95 984 7338"
+    address="010114, Campus Balzay, Cuenca, Ecuador"
+    orcid="0009-0008-0363-2245"
+  />
+  <Footer />
+</Layout>

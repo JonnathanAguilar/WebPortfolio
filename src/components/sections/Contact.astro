@@ -1,0 +1,201 @@
+---
+// src/components/sections/Contact.astro
+export interface Props {
+  email: string;
+  phone: string;
+  address: string;
+  orcid: string;
+}
+
+const { email, phone, address, orcid } = Astro.props;
+---
+
+<section id="contact" class="py-20 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
+      Contacto
+    </h2>
+    
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8">
+        {/* Formulario */}
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8" data-aos="fade-right">
+          <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Envíame un mensaje</h3>
+          
+          <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true" class="space-y-5">
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden">
+              <label>No llenes esto si eres humano: <input name="bot-field" /></label>
+            </p>
+            
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Nombre *
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition"
+              />
+            </div>
+            
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Email *
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition"
+              />
+            </div>
+            
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Asunto *
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition"
+              />
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Mensaje *
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition resize-none"
+              ></textarea>
+            </div>
+            
+            <button
+              type="submit"
+              class="w-full bg-linear-to-br from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-semibold py-3 px-4 rounded-xl transition-all transform hover:-translate-y-0.5 shadow-md"
+            >
+              <i class="fas fa-paper-plane mr-2"></i>
+              Enviar mensaje
+            </button>
+            
+            <div id="form-status" class="text-sm text-center"></div>
+          </form>
+        </div>
+        
+        {/* Información de contacto */}
+        <div class="bg-linear-to-br from-primary-500 to-secondary-500 rounded-2xl shadow-lg p-8 text-white" data-aos="fade-left">
+          <h3 class="text-2xl font-bold mb-6">Información de contacto</h3>
+          
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <p class="font-semibold mb-1">Dirección</p>
+                <p class="text-white/80 text-sm">{address}</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <p class="font-semibold mb-1">Teléfono</p>
+                <a href={`tel:${phone.replace(/\s/g, '')}`} class="text-white/80 hover:text-white transition text-sm">
+                  {phone}
+                </a>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <p class="font-semibold mb-1">Email</p>
+                <a href={`mailto:${email}`} class="text-white/80 hover:text-white transition text-sm break-all">
+                  {email}
+                </a>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <i class="fab fa-orcid"></i>
+              </div>
+              <div>
+                <p class="font-semibold mb-1">ORCID</p>
+                <a href={`https://orcid.org/${orcid}`} target="_blank" class="text-white/80 hover:text-white transition text-sm">
+                  {orcid}
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          {/* Redes sociales */}
+          <div class="mt-8 pt-6 border-t border-white/20">
+            <p class="font-semibold mb-4">Sígueme</p>
+            <div class="flex gap-3">
+              <a href="https://github.com/JonnathanAguilar" target="_blank" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/jonnathan-aguilar-lalvay" target="_blank" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://x.com/jaguilarlalvay" target="_blank" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://www.instagram.com/jonnathan_aguilarl" target="_blank" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Manejo del formulario
+  const form = document.querySelector<HTMLFormElement>('form[name="contact"]');
+  const statusDiv = document.getElementById('form-status');
+  
+  if (form && statusDiv) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      statusDiv.innerHTML = '<span class="text-primary-600">Enviando...</span>';
+      
+      try {
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData as any).toString()
+        });
+        
+        if (response.ok) {
+          statusDiv.innerHTML = '<span class="text-green-600">✓ ¡Mensaje enviado con éxito! Te contactaré pronto.</span>';
+          form.reset();
+        } else {
+          throw new Error('Error al enviar');
+        }
+      } catch (error) {
+        statusDiv.innerHTML = '<span class="text-red-600">✗ Error al enviar. Por favor, inténtalo de nuevo.</span>';
+      }
+    });
+  }
+</script>

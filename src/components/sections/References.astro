@@ -1,0 +1,52 @@
+---
+import type { ReferencesData } from '../../data/types';
+
+export interface Props {
+  data: ReferencesData;
+}
+
+const { data } = Astro.props;
+---
+
+<section id="references" class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
+      {data.title}
+    </h2>
+    
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-6">
+        {data.references.map((ref, index) => (
+          <div 
+            class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 group"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div class="relative h-40 bg-linear-to-br from-primary-500 to-secondary-500">
+              <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
+                <div class="w-24 h-24 rounded-full border-4 border-white dark:border-gray-900 overflow-hidden bg-white">
+                  <img src={ref.image} alt={ref.name} class="w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
+            <div class="pt-16 pb-6 px-6 text-center">
+              <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-1">{ref.name}</h3>
+              <p class="text-sm text-primary-600 dark:text-primary-400 font-semibold mb-2">{ref.role}</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">{ref.institution}</p>
+              <div class="space-y-2 text-sm">
+                <div class="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400">
+                  <i class="fas fa-envelope text-primary-500 text-xs"></i>
+                  <a href={`mailto:${ref.email}`} class="hover:text-primary-600 transition text-sm">{ref.email}</a>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400">
+                  <i class="fas fa-phone-alt text-primary-500 text-xs"></i>
+                  <span>{ref.phone}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

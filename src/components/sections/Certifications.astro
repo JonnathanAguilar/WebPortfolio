@@ -1,0 +1,62 @@
+---
+import type { CertificationsData } from '../../data/types';
+
+export interface Props {
+  data: CertificationsData;
+}
+
+const { data } = Astro.props;
+---
+
+<section id="certifications" class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
+      {data.title}
+    </h2>
+    
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {data.certifications.map((cert, index) => (
+          <div 
+            class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all hover:-translate-y-1 group"
+            data-aos="fade-up"
+            data-aos-delay={index * 50}
+          >
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-linear-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white text-xl shrink-0">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-bold text-gray-800 dark:text-white mb-1 line-clamp-2">{cert.name}</h3>
+                <p class="text-sm text-primary-600 dark:text-primary-400 mb-2">{cert.issuer}</p>
+                <div class="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400">
+                  <span class="flex items-center gap-1">
+                    <i class="far fa-calendar-alt"></i>
+                    {cert.date}
+                  </span>
+                  {cert.hours && (
+                    <span class="flex items-center gap-1">
+                      <i class="far fa-clock"></i>
+                      {cert.hours}
+                    </span>
+                  )}
+                </div>
+                {cert.link && (
+                  <a 
+                    href={cert.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 mt-3 text-xs text-primary-600 dark:text-primary-400 hover:gap-2 transition-all"
+                  >
+                    <span>Ver certificado</span>
+                    <i class="fas fa-external-link-alt text-xs"></i>
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
