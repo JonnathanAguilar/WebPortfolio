@@ -1,57 +1,111 @@
 ---
+import type { HeroData } from "../../data/types";
+
 export interface Props {
-  name: string;
-  title: string;
-  hireText: string;
-  cvText: string;
-  cvLink: string;
+  data: HeroData;
 }
 
-const { name, title, hireText, cvText, cvLink } = Astro.props;
+const { data } = Astro.props;
 ---
 
-<section class="min-h-screen flex items-center justify-center relative bg-linear-to-br from-primary-50 to-secondary-50 dark:from-gray-900 dark:to-gray-800 pt-20">
-  <div class="container mx-auto px-4 py-20 text-center">
+<section
+  id="hero"
+  class="min-h-screen flex items-center justify-center relative bg-linear-to-br from-primary-50 to-secondary-50 dark:from-gray-900 dark:to-gray-800 pt-20"
+>
+  <div class="container mx-auto px-4 py-2 text-center">
     {/* Profile Image */}
-    <div class="mb-8" data-aos="fade-up">
-      <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-primary-500 shadow-xl">
-        <img src="/images/profile.jpg" alt={name} class="w-full h-full object-cover" />
+    <div class="mb-8" data-aos="fade-up" data-aos-anchor="#hero">
+      <div
+        class="w-48 h-48 mx-auto rounded-full overflow-hidden border-2 border-primary-500 shadow-xl"
+      >
+        <img
+          src={data.image}
+          alt={data.name}
+          class="w-full h-full object-cover"
+        />
       </div>
     </div>
-    
+
     {/* Name */}
-    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white mb-4" data-aos="fade-up" data-aos-delay="100">
-      {name}
+    <h1
+      class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white mb-4"
+      data-aos="fade-up"
+      data-aos-anchor="#hero"
+      data-aos-delay="100"
+    >
+      {data.name}
     </h1>
-    
+
     {/* Title */}
-    <p class="text-xl md:text-2xl text-primary-600 dark:text-primary-400 mb-8" data-aos="fade-up" data-aos-delay="200">
-      {title}
+    <p
+      class="text-xl md:text-2xl text-primary-600 dark:text-primary-400 mb-8"
+      data-aos="fade-up"
+      data-aos-anchor="#hero"
+      data-aos-delay="200"
+    >
+      {data.title} | {data.description}
     </p>
-    
+
     {/* Buttons */}
-    <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="300">
-      <a href="#contact" class="smooth-scroll px-8 py-3 bg-linear-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-semibold rounded-lg transition-all transform hover:-translate-y-1 shadow-md">
-        {hireText}
+    <div
+      class="flex flex-col sm:flex-row gap-4 justify-center"
+      data-aos="fade-up"
+      data-aos-anchor="#hero"
+      data-aos-delay="300"
+    >
+      <a
+        href="https://wa.me/593987798311?text=¡Hola%20Jonnathan!%20Vi%20tu%20portafolio%20y%20me%20gustaría%20conectar%20contigo."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group px-6 sm:px-8 py-3 bg-linear-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-lg transition-all transform hover:-translate-y-1 hover:shadow-xl shadow-md flex items-center justify-center gap-2 text-sm sm:text-base"
+      >
+        <i class="fab fa-whatsapp text-lg sm:text-xl group-hover:scale-110 transition-transform"></i>
+        {data.contact}
       </a>
-      <a href={cvLink} download class="px-8 py-3 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg transition-all transform hover:-translate-y-1 shadow-md">
-        <i class="fas fa-download mr-2"></i>
-        {cvText}
+
+      <a
+        href={data.cvLink}
+        download
+        class="group px-6 sm:px-8 py-3 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg transition-all transform hover:-translate-y-1 hover:shadow-xl shadow-md flex items-center justify-center gap-2 text-sm sm:text-base"
+      >
+        <i class="fas fa-download text-lg sm:text-xl group-hover:scale-110 transition-transform"></i>
+        <span>{data.cv}</span>
       </a>
     </div>
-    
+
     {/* Social Links */}
-    <div class="flex justify-center gap-4 mt-12" data-aos="fade-up" data-aos-delay="400">
-      <a href="https://github.com/JonnathanAguilar" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1">
+    <div
+      class="flex justify-center gap-4 mt-12"
+      data-aos="fade-up"
+      data-aos-anchor="#hero"
+      data-aos-delay="400"
+    >
+      <a
+        href="https://github.com/JonnathanAguilar"
+        target="_blank"
+        class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1"
+      >
         <i class="fab fa-github"></i>
       </a>
-      <a href="https://www.linkedin.com/in/jonnathan-aguilar-lalvay" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1">
+      <a
+        href="https://www.linkedin.com/in/jonnathan-aguilar-lalvay"
+        target="_blank"
+        class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1"
+      >
         <i class="fab fa-linkedin-in"></i>
       </a>
-      <a href="https://x.com/jaguilarlalvay" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1">
+      <a
+        href="https://x.com/jaguilarlalvay"
+        target="_blank"
+        class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1"
+      >
         <i class="fab fa-twitter"></i>
       </a>
-      <a href="https://www.instagram.com/jonnathan_aguilarl" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1">
+      <a
+        href="https://www.instagram.com/jonnathan_aguilarl"
+        target="_blank"
+        class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white transition-all transform hover:-translate-y-1"
+      >
         <i class="fab fa-instagram"></i>
       </a>
     </div>

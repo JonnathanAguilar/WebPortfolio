@@ -35,15 +35,25 @@ const { title, description = "Portafolio profesional de Jonnathan Aguilar - Inge
     <slot />
     
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script is:inline>
-      AOS.init({
-        duration: 1000,
-        once: true,
-        offset: 100
+      // 1. Esperamos a que el navegador construya todo el HTML
+      document.addEventListener('DOMContentLoaded', () => {
+        // 2. Inicializamos AOS
+        AOS.init({
+          duration: 800, // Un poco más rápido (800ms) se siente más moderno
+          once: true,    // La animación solo ocurre la primera vez que bajas
+          offset: 50,    // Anima los elementos un poco antes de que aparezcan por completo
+        });
+
+        // 3. Pequeño truco de seguridad: refrescar las posiciones después de un instante
+        // por si alguna imagen o fuente tardó en cargar y empujó el contenido
+        setTimeout(() => {
+          AOS.refresh();
+        }, 300);
       });
-      
-      // Tema oscuro
+
+      // Lógica del Tema oscuro (Mantenemos tu código que funciona perfecto)
       const theme = localStorage.getItem('theme');
       if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');

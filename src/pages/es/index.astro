@@ -13,6 +13,7 @@ import References from '../../components/sections/References.astro';
 import Contact from '../../components/sections/Contact.astro';
 import Footer from '../../components/common/Footer.astro';
 
+import { heroData } from '../../data/es/hero';
 import { aboutData } from '../../data/es/about';
 import { skillsData } from '../../data/es/skills';
 import { experienceData } from '../../data/es/experience';
@@ -23,15 +24,9 @@ import { publicationsData } from '../../data/es/publications';
 import { referencesData } from '../../data/es/references';
 ---
 
-<Layout title="Jonnathan Aguilar | Ingeniero en Ciencias de la Computación" lang="es">
+<Layout title="Jonnathan Aguilar | Estudiante en Ciencias de la Computación" lang="es">
   <Header />
-  <Hero 
-    name="Jonnathan Aguilar Lalvay"
-    title="Ingeniero en Ciencias de la Computación | Desarrollador Full-Stack"
-    hireText="Contrátame"
-    cvText="Descargar CV"
-    cvLink="/docs/CV_JonnathanAguilar.pdf"
-  />
+  <Hero data={heroData} />
   <About data={aboutData} />
   <Skills data={skillsData} />
   <Experience experiences={experienceData.experiences} title={experienceData.title} />

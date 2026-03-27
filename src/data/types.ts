@@ -1,3 +1,13 @@
+export interface HeroData {
+  name: string;
+  title: string;
+  description: string;
+  image: string;
+  contact: string;
+  cv: string;
+  cvLink: string;
+}
+
 export interface AboutData {
   title: string;
   greeting: string;
