@@ -1,5 +1,5 @@
 ---
-import type { Project } from '../../data/types';
+import type { Project } from "../../data/types";
 
 export interface Props {
   projects: Project[];
@@ -9,51 +9,93 @@ export interface Props {
 const { projects, title } = Astro.props;
 ---
 
-<section id="portfolio" class="py-20 bg-gray-50 dark:bg-gray-800">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
-      {title}
-    </h2>
-    
-    <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      {projects.map((project, index) => (
-        <a 
-          href={project.link} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-          data-aos="fade-up"
-          data-aos-delay={index * 100}
-        >
-          <div class="relative overflow-hidden h-72">
-            <img 
-              src={project.image} 
-              alt={project.title} 
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-            <div class="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-          
-          <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-linear-to-t from-black to-transparent">
-            <h3 class="text-white text-xl font-bold mb-2">{project.title}</h3>
-            <p class="text-gray-200 text-sm mb-2 line-clamp-2">{project.description}</p>
-            <div class="flex flex-wrap gap-2 mb-3">
-              {project.tech.split(', ').map((tech) => (
-                <span class="text-xs px-2 py-1 bg-white/20 rounded-full text-white">{tech}</span>
-              ))}
+<section id="portfolio" class="py-24 bg-gray-50 dark:bg-gray-800/50">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white inline-block relative"
+      >
+        {title}
+        <span
+          class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-primary-500 rounded-full"
+        ></span>
+      </h2>
+    </div>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto"
+    >
+      {
+        projects.map((project, index) => (
+          <div
+            class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="relative overflow-hidden h-56 block"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Proyecto'"
+              />
+              {/* Etiqueta flotante */}
+              <div class="absolute top-4 right-4 px-3 py-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-primary-600 dark:text-primary-400 text-xs rounded-full font-bold shadow-sm flex items-center gap-1.5">
+                <i
+                  class={
+                    project.type === "github"
+                      ? "fa-brands fa-github"
+                      : "fas fa-globe"
+                  }
+                ></i>{" "}
+                {project.type === "github" ? "Repositorio" : "Web App"}
+              </div>
+            </a>
+
+            {/* Contenido de la tarjeta */}
+            <div class="p-6 md:p-8 flex flex-col grow">
+              <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-1">
+                {project.title}
+              </h3>
+
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 grow line-clamp-3">
+                {project.description}
+              </p>
+
+              {/* Etiquetas de Tecnologías */}
+              <div class="flex flex-wrap gap-2 mb-8">
+                {project.tech.split(", ").map((tech) => (
+                  <span class="text-xs px-3 py-1 bg-primary-50 dark:bg-gray-700 text-primary-700 dark:text-primary-300 font-semibold rounded-lg border border-primary-100 dark:border-gray-600">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Botón de Enlace */}
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-auto w-full py-3 px-4 bg-gray-50 dark:bg-gray-900 hover:bg-primary-500 hover:text-white dark:hover:bg-primary-600 text-gray-700 dark:text-gray-200 text-sm font-bold rounded-xl text-center transition-all duration-300 flex items-center justify-center gap-2 border border-gray-200 dark:border-gray-700 hover:border-transparent"
+              >
+                <span>
+                  {project.type === "github"
+                    ? "Ver Código Fuente"
+                    : "Visitar Proyecto"}
+                </span>
+                <i
+                  class={`fas ${project.type === "github" ? "fa-code-branch" : "fa-external-link-alt"}`}
+                />
+              </a>
             </div>
-            <div class="flex items-center gap-2 text-white text-sm">
-              <i class={`fas ${project.type === 'github' ? 'fa-github' : 'fa-external-link-alt'}`}></i>
-              <span>{project.type === 'github' ? 'Ver en GitHub' : 'Visitar sitio'}</span>
-            </div>
           </div>
-          
-          {/* Badge de tipo */}
-          <div class="absolute top-4 right-4 px-3 py-1 bg-primary-500 text-white text-xs rounded-full font-semibold shadow-lg">
-            {project.type === 'github' ? 'GitHub' : 'Web App'}
-          </div>
-        </a>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
