@@ -6,39 +6,68 @@ export interface Props {
 }
 
 const { data } = Astro.props;
+
+const getCategoryIcon = (index: number) => {
+  const icons = [
+    'fa-laptop-code', // Frontend
+    'fa-server',      // Backend
+    'fa-globe-americas', // DB & GIS
+    'fa-tools'        // Herramientas
+  ];
+  return icons[index % icons.length];
+};
+
+const getLevelText = (level: number) => {
+  if (level >= 80) return "Avanzado";
+  if (level >= 65) return "Intermedio";
+  return "Básico";
+};
 ---
 
-<section id="skills" class="py-20 bg-gray-50 dark:bg-gray-800">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
-      {data.title}
-    </h2>
+<section id="skills" class="py-24 bg-gray-50 dark:bg-gray-800/50">
+  <div class="container mx-auto px-4 lg:px-8">
     
-    <div class="max-w-5xl mx-auto">
-      <div class="grid md:grid-cols-2 gap-8">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white inline-block relative">
+        {data.title}
+        <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-primary-500 rounded-full"></span>
+      </h2>
+    </div>
+    
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-10">
         {data?.categories?.map((category, catIndex) => (
-          <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow" data-aos="fade-up" data-aos-delay={catIndex * 100}>
-            <h3 class="text-xl font-bold mb-6 text-gray-800 dark:text-white border-l-4 border-primary-500 pl-3">
-              {category.name}
-            </h3>
-            <div class="space-y-4">
-              {category.skills?.map((skill, skillIndex) => (
-                <div>
-                  <div class="flex justify-between mb-2">
-                    <span class="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
-                    <span class="text-primary-600 dark:text-primary-400 font-semibold">{skill.level}%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-                    <div 
-                      class="bg-linear-to-r from-primary-500 to-secondary-500 h-2 rounded-full transition-all duration-1000"
-                      style={{ width: `${skill.level}%` }}
-                      data-aos="progress-full"
-                      data-aos-duration="1500"
-                    ></div>
-                  </div>
+          <div 
+            class="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-8 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300" 
+            data-aos="fade-up" 
+            data-aos-delay={catIndex * 100}
+          >
+            <div class="flex items-center gap-4 mb-8">
+              <div class="w-14 h-14 rounded-2xl bg-primary-50 dark:bg-gray-700 flex items-center justify-center text-primary-500 text-2xl shadow-sm">
+                <i class={`fas ${getCategoryIcon(catIndex)}`}></i>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 dark:text-white">
+                {category.name}
+              </h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {category.skills?.map((skill) => (
+                <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700 transition-colors group">
+                  <span class="font-semibold text-gray-700 dark:text-gray-300 text-sm group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                    {skill.name}
+                  </span>
+                  
+                  <span class={`text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full 
+                    ${skill.level >= 80 ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 
+                      skill.level >= 65 ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 
+                      'bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400'}`}>
+                    {getLevelText(skill.level)}
+                  </span>
                 </div>
               ))}
             </div>
+
           </div>
         ))}
       </div>
