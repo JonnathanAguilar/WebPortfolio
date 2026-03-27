@@ -8,42 +8,73 @@ export interface Props {
 const { data } = Astro.props;
 ---
 
-<section id="references" class="py-20 bg-gray-50 dark:bg-gray-800">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
-      {data.title}
-    </h2>
+<section id="references" class="py-24 bg-gray-50 dark:bg-gray-800/50">
+  <div class="container mx-auto px-4 lg:px-8">
     
-    <div class="max-w-5xl mx-auto">
-      <div class="grid md:grid-cols-3 gap-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white inline-block relative">
+        {data.title}
+        <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-primary-500 rounded-full"></span>
+      </h2>
+    </div>
+    
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {data.references.map((ref, index) => (
           <div 
-            class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 group"
+            class="bg-white dark:bg-gray-800 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-md hover:shadow-xl hover:-translate-y-2 hover:border-primary-200 dark:hover:border-primary-800 transition-all duration-300 group overflow-hidden flex flex-col"
             data-aos="fade-up"
             data-aos-delay={index * 100}
           >
-            <div class="relative h-40 bg-linear-to-br from-primary-500 to-secondary-500">
+            {/* Banner Superior */}
+            <div class="relative h-28 bg-primary-50/80 dark:bg-gray-700/50">
               <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
-                <div class="w-24 h-24 rounded-full border-4 border-white dark:border-gray-900 overflow-hidden bg-white">
-                  <img src={ref.image} alt={ref.name} class="w-full h-full object-cover" />
+                <div class="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 overflow-hidden shadow-md group-hover:scale-105 transition-transform duration-300 bg-white">
+                  <img 
+                    src={ref.image} 
+                    alt={ref.name} 
+                    class="w-full h-full object-cover" 
+                    onerror={`this.src='https://ui-avatars.com/api/?name=${ref.name.replace(/ /g, '+')}&background=random&color=fff'`}
+                  />
                 </div>
               </div>
             </div>
-            <div class="pt-16 pb-6 px-6 text-center">
-              <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-1">{ref.name}</h3>
-              <p class="text-sm text-primary-600 dark:text-primary-400 font-semibold mb-2">{ref.role}</p>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">{ref.institution}</p>
-              <div class="space-y-2 text-sm">
-                <div class="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400">
-                  <i class="fas fa-envelope text-primary-500 text-xs"></i>
-                  <a href={`mailto:${ref.email}`} class="hover:text-primary-600 transition text-sm">{ref.email}</a>
-                </div>
-                <div class="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400">
-                  <i class="fas fa-phone-alt text-primary-500 text-xs"></i>
+            
+            {/* Contenido de la Tarjeta */}
+            <div class="pt-16 pb-8 px-6 grow flex flex-col text-center">
+              <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {ref.name}
+              </h3>
+              
+              <p class="text-sm font-semibold text-primary-600 dark:text-primary-400 mb-1">
+                {ref.role}
+              </p>
+              
+              <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-6 px-2">
+                {ref.institution}
+              </p>
+              
+              {/* Información de Contacto */}
+              <div class="mt-auto space-y-3">
+                <a 
+                  href={`mailto:${ref.email}`} 
+                  class="flex items-center justify-center gap-3 text-sm text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group/link"
+                >
+                  <div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-900 flex items-center justify-center text-primary-500 group-hover/link:bg-primary-50 dark:group-hover/link:bg-primary-900/50 transition-colors shrink-0">
+                    <i class="fas fa-envelope text-xs"></i>
+                  </div>
+                  <span class="truncate max-w-50">{ref.email}</span>
+                </a>
+                
+                <div class="flex items-center justify-center gap-3 text-sm text-gray-600 dark:text-gray-300 group/link cursor-default">
+                  <div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-900 flex items-center justify-center text-primary-500 shrink-0">
+                    <i class="fas fa-phone-alt text-xs"></i>
+                  </div>
                   <span>{ref.phone}</span>
                 </div>
               </div>
             </div>
+            
           </div>
         ))}
       </div>

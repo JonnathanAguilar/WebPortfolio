@@ -1,5 +1,4 @@
 ---
-// src/components/sections/Contact.astro
 export interface Props {
   email: string;
   phone: string;
@@ -10,166 +9,187 @@ export interface Props {
 const { email, phone, address, orcid } = Astro.props;
 ---
 
-<section id="contact" class="py-20 bg-white dark:bg-gray-900">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
-      Contacto
-    </h2>
+<section id="contact" class="py-24 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4 lg:px-8">
     
-    <div class="max-w-5xl mx-auto">
-      <div class="grid md:grid-cols-2 gap-8">
-        {/* Formulario */}
-        <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8" data-aos="fade-right">
-          <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Envíame un mensaje</h3>
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white inline-block relative">
+        Contacto
+        <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-primary-500 rounded-full"></span>
+      </h2>
+      <p class="text-gray-600 dark:text-gray-400 mt-6 max-w-2xl mx-auto font-medium">
+        ¿Tienes un proyecto en mente o necesitas asesoramiento? 
+        Escríbeme y estaré encantado de conversar contigo.
+      </p>
+    </div>
+    
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col lg:flex-row">
+        
+        {/* Lado Izquierdo: Formulario */}
+        <div class="w-full lg:w-3/5 p-8 md:p-12" data-aos="fade-right">
+          <h3 class="text-2xl font-bold mb-8 text-gray-800 dark:text-white flex items-center gap-3">
+            <i class="fas fa-paper-plane text-primary-500"></i>
+            Envíame un mensaje
+          </h3>
           
-          <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true" class="space-y-5">
+          <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true" class="space-y-6">
             <input type="hidden" name="form-name" value="contact" />
             <p class="hidden">
               <label>No llenes esto si eres humano: <input name="bot-field" /></label>
             </p>
             
-            <div>
-              <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Nombre *
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition"
-              />
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wide">
+                  Nombre Completo
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Ej: Jonnathan Aguilar"
+                  class="w-full px-5 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:text-white transition-all outline-none"
+                />
+              </div>
+              
+              <div>
+                <label for="email" class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wide">
+                  Correo Electrónico
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="tucorreo@ejemplo.com"
+                  class="w-full px-5 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:text-white transition-all outline-none"
+                />
+              </div>
             </div>
             
             <div>
-              <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Email *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition"
-              />
-            </div>
-            
-            <div>
-              <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Asunto *
+              <label for="subject" class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wide">
+                Asunto
               </label>
               <input
                 type="text"
                 id="subject"
                 name="subject"
                 required
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition"
+                placeholder="¿En qué te puedo ayudar?"
+                class="w-full px-5 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:text-white transition-all outline-none"
               />
             </div>
             
             <div>
-              <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Mensaje *
+              <label for="message" class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wide">
+                Mensaje
               </label>
               <textarea
                 id="message"
                 name="message"
-                rows="5"
+                rows="4"
                 required
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition resize-none"
+                placeholder="Escribe tu mensaje aquí..."
+                class="w-full px-5 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:text-white transition-all outline-none resize-none"
               ></textarea>
             </div>
             
             <button
               type="submit"
-              class="w-full bg-linear-to-br from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-semibold py-3 px-4 rounded-xl transition-all transform hover:-translate-y-0.5 shadow-md"
+              class="w-full lg:w-auto bg-primary-500 hover:bg-primary-600 text-white font-bold py-3.5 px-8 rounded-xl transition-all transform hover:-translate-y-1 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
             >
-              <i class="fas fa-paper-plane mr-2"></i>
-              Enviar mensaje
+              <span>Enviar mensaje</span>
+              <i class="fas fa-arrow-right text-sm"></i>
             </button>
             
-            <div id="form-status" class="text-sm text-center"></div>
+            <div id="form-status" class="text-sm font-bold mt-2"></div>
           </form>
         </div>
         
-        {/* Información de contacto */}
-        <div class="bg-linear-to-br from-primary-500 to-secondary-500 rounded-2xl shadow-lg p-8 text-white" data-aos="fade-left">
-          <h3 class="text-2xl font-bold mb-6">Información de contacto</h3>
+        {/* Lado Derecho: Información de contacto */}
+        <div class="w-full lg:w-2/5 bg-linear-to-br from-gray-900 to-gray-800 dark:from-gray-950 dark:to-gray-900 p-8 md:p-12 text-white flex flex-col" data-aos="fade-left">
+          <h3 class="text-2xl font-bold mb-8">Información</h3>
           
-          <div class="space-y-6">
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                <i class="fas fa-map-marker-alt"></i>
+          <div class="space-y-8 grow">
+            
+            <div class="flex items-center gap-5 group">
+              <div class="w-12 h-12 rounded-xl bg-white/10 group-hover:bg-primary-500 flex items-center justify-center shrink-0 transition-colors duration-300">
+                <i class="fas fa-map-marker-alt text-lg"></i>
               </div>
               <div>
-                <p class="font-semibold mb-1">Dirección</p>
-                <p class="text-white/80 text-sm">{address}</p>
+                <p class="font-semibold text-gray-400 text-sm uppercase tracking-wide mb-1">Ubicación</p>
+                <p class="font-medium">{address}</p>
               </div>
             </div>
             
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                <i class="fas fa-phone-alt"></i>
+            <div class="flex items-center gap-5 group">
+              <div class="w-12 h-12 rounded-xl bg-white/10 group-hover:bg-primary-500 flex items-center justify-center shrink-0 transition-colors duration-300">
+                <i class="fas fa-phone-alt text-lg"></i>
               </div>
               <div>
-                <p class="font-semibold mb-1">Teléfono</p>
-                <a href={`tel:${phone.replace(/\s/g, '')}`} class="text-white/80 hover:text-white transition text-sm">
+                <p class="font-semibold text-gray-400 text-sm uppercase tracking-wide mb-1">Teléfono / WhatsApp</p>
+                <a href={`tel:${phone.replace(/\s/g, '')}`} class="font-medium hover:text-primary-400 transition-colors">
                   {phone}
                 </a>
               </div>
             </div>
             
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                <i class="fas fa-envelope"></i>
+            <div class="flex items-center gap-5 group">
+              <div class="w-12 h-12 rounded-xl bg-white/10 group-hover:bg-primary-500 flex items-center justify-center shrink-0 transition-colors duration-300">
+                <i class="fas fa-envelope text-lg"></i>
               </div>
               <div>
-                <p class="font-semibold mb-1">Email</p>
-                <a href={`mailto:${email}`} class="text-white/80 hover:text-white transition text-sm break-all">
+                <p class="font-semibold text-gray-400 text-sm uppercase tracking-wide mb-1">Email</p>
+                <a href={`mailto:${email}`} class="font-medium hover:text-primary-400 transition-colors break-all">
                   {email}
                 </a>
               </div>
             </div>
             
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                <i class="fab fa-orcid"></i>
+            <div class="flex items-center gap-5 group">
+              <div class="w-12 h-12 rounded-xl bg-white/10 group-hover:bg-primary-500 flex items-center justify-center shrink-0 transition-colors duration-300">
+                <i class="fab fa-orcid text-lg"></i>
               </div>
               <div>
-                <p class="font-semibold mb-1">ORCID</p>
-                <a href={`https://orcid.org/${orcid}`} target="_blank" class="text-white/80 hover:text-white transition text-sm">
+                <p class="font-semibold text-gray-400 text-sm uppercase tracking-wide mb-1">ORCID</p>
+                <a href={`https://orcid.org/${orcid}`} target="_blank" rel="noopener noreferrer" class="font-medium hover:text-primary-400 transition-colors">
                   {orcid}
                 </a>
               </div>
             </div>
+            
           </div>
           
           {/* Redes sociales */}
-          <div class="mt-8 pt-6 border-t border-white/20">
-            <p class="font-semibold mb-4">Sígueme</p>
-            <div class="flex gap-3">
-              <a href="https://github.com/JonnathanAguilar" target="_blank" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
-                <i class="fab fa-github"></i>
+          <div class="mt-12 pt-8 border-t border-white/10">
+            <p class="font-semibold text-gray-400 text-sm uppercase tracking-wide mb-4 text-center lg:text-left">Sígueme</p>
+            <div class="flex gap-4 justify-center lg:justify-start">
+              <a href="https://github.com/JonnathanAguilar" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 hover:bg-white hover:text-gray-900 flex items-center justify-center transition-all duration-300">
+                <i class="fab fa-github text-lg"></i>
               </a>
-              <a href="https://www.linkedin.com/in/jonnathan-aguilar-lalvay" target="_blank" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
-                <i class="fab fa-linkedin-in"></i>
+              <a href="https://www.linkedin.com/in/jonnathan-aguilar-lalvay" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 hover:bg-[#0A66C2] hover:border-transparent flex items-center justify-center transition-all duration-300">
+                <i class="fab fa-linkedin-in text-lg"></i>
               </a>
-              <a href="https://x.com/jaguilarlalvay" target="_blank" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
-                <i class="fab fa-twitter"></i>
+              <a href="https://x.com/jaguilarlalvay" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 hover:bg-black hover:border-transparent flex items-center justify-center transition-all duration-300">
+                <i class="fa-brands fa-twitter text-lg"></i>
               </a>
-              <a href="https://www.instagram.com/jonnathan_aguilarl" target="_blank" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
-                <i class="fab fa-instagram"></i>
+              <a href="https://www.instagram.com/jonnathan_aguilarl" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 hover:bg-[#E1306C] hover:border-transparent flex items-center justify-center transition-all duration-300">
+                <i class="fab fa-instagram text-lg"></i>
               </a>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
 </section>
 
 <script>
-  // Manejo del formulario
   const form = document.querySelector<HTMLFormElement>('form[name="contact"]');
   const statusDiv = document.getElementById('form-status');
   
@@ -178,7 +198,7 @@ const { email, phone, address, orcid } = Astro.props;
       e.preventDefault();
       
       const formData = new FormData(form);
-      statusDiv.innerHTML = '<span class="text-primary-600">Enviando...</span>';
+      statusDiv.innerHTML = '<span class="text-primary-500"><i class="fas fa-spinner fa-spin mr-2"></i>Enviando mensaje...</span>';
       
       try {
         const response = await fetch('/', {
@@ -188,13 +208,13 @@ const { email, phone, address, orcid } = Astro.props;
         });
         
         if (response.ok) {
-          statusDiv.innerHTML = '<span class="text-green-600">✓ ¡Mensaje enviado con éxito! Te contactaré pronto.</span>';
+          statusDiv.innerHTML = '<span class="text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-4 py-2 rounded-lg block"><i class="fas fa-check-circle mr-2"></i>¡Mensaje enviado con éxito! Te contactaré pronto.</span>';
           form.reset();
         } else {
           throw new Error('Error al enviar');
         }
       } catch (error) {
-        statusDiv.innerHTML = '<span class="text-red-600">✗ Error al enviar. Por favor, inténtalo de nuevo.</span>';
+        statusDiv.innerHTML = '<span class="text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/30 px-4 py-2 rounded-lg block"><i class="fas fa-times-circle mr-2"></i>Error al enviar. Por favor, inténtalo de nuevo.</span>';
       }
     });
   }
