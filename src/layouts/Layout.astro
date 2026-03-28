@@ -16,7 +16,7 @@ const {
   description = lang === "es"
     ? "Portafolio profesional de Jonnathan Aguilar, Desarrollador Full Stack."
     : "Professional portfolio of Jonnathan Aguilar, Full Stack Developer.",
-  image = "/images/profile.jpg", 
+  image = "/images/profile.jpg",
 } = Astro.props;
 
 // Lógica para SEO y URLs
@@ -33,7 +33,7 @@ if (!alternatePath.startsWith(`/${alternateLang}`)) {
 }
 
 const alternateURL = `${siteUrl}${alternatePath}`;
-const defaultURL = `${siteUrl}/es/`; 
+const defaultURL = `${siteUrl}/es/`;
 const socialImageURL = `${siteUrl}${image}`;
 ---
 
@@ -83,6 +83,33 @@ const socialImageURL = `${siteUrl}${image}`;
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <ClientRouter />
+
+    <slot name="head" />
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <ClientRouter />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6CDRSBPQRG"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      // Registra la visita cuando el usuario entra por primera vez
+      gtag("config", "G-6CDRSBPQRG");
+
+      // Registra la visita cada vez que el usuario cambia de idioma (sin recargar)
+      document.addEventListener("astro:after-swap", () => {
+        gtag("config", "G-6CDRSBPQRG", {
+          page_path: window.location.pathname,
+          page_title: document.title,
+        });
+      });
+    </script>
 
     <slot name="head" />
   </head>
