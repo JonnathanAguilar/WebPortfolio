@@ -7,11 +7,16 @@ const { class: className = "" } = Astro.props;
 ---
 
 <button 
-  class={`theme-toggle-btn p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition ${className}`}
+  class={`theme-toggle-btn p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition flex items-center justify-center w-10 h-10 ${className}`}
   aria-label="Alternar tema oscuro/claro"
 >
-  <i class="fas fa-moon dark:hidden"></i>
-  <i class="fas fa-sun hidden dark:inline"></i>
+  <span class="block dark:hidden">
+    <i class="fas fa-moon text-lg"></i>
+  </span>
+  
+  <span class="hidden dark:block text-yellow-400">
+    <i class="fas fa-sun text-lg"></i>
+  </span>
 </button>
 
 <script>
@@ -26,7 +31,6 @@ const { class: className = "" } = Astro.props;
     // Buscamos todos los botones que tengan esta clase y les asignamos el evento
     const buttons = document.querySelectorAll('.theme-toggle-btn');
     buttons.forEach(btn => {
-      // Evitamos asignar el evento múltiples veces
       btn.removeEventListener('click', toggleTheme);
       btn.addEventListener('click', toggleTheme);
     });
@@ -35,6 +39,6 @@ const { class: className = "" } = Astro.props;
   // Ejecutamos la configuración
   setupThemeToggles();
   
-  // Soporte para las transiciones de vista (View Transitions) de Astro si las usas
+  // Soporte para las transiciones de vista (View Transitions) de Astro
   document.addEventListener('astro:after-swap', setupThemeToggles);
 </script>

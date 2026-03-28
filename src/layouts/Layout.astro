@@ -1,6 +1,8 @@
 ---
-import "../styles/global.css";
-import WhatsAppButton from "../components/common/WhatsAppButton.astro";
+import '../styles/global.css';
+import WhatsAppButton from '../components/common/WhatsAppButton.astro';
+
+import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
   title: string;
@@ -8,78 +10,81 @@ export interface Props {
   lang?: string;
 }
 
-const {
-  title,
+const { 
+  title, 
   lang = "es",
-  description = lang === "es"
-    ? "Portafolio profesional..."
-    : "Professional portfolio...",
+  description = lang === "es" ? "Portafolio profesional..." : "Professional portfolio..." 
 } = Astro.props;
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Jonnathan Aguilar" />
-
+    
     <title>{title}</title>
-
-    <!-- Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <!-- AOS -->
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
+    
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
+    
+    <ClientRouter />
+    
     <slot name="head" />
   </head>
-  <body
-    class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 antialiased overflow-x-hidden"
-  >
+  <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 antialiased overflow-x-hidden">
     <slot />
 
     <WhatsAppButton />
-
-    <!-- Scripts -->
+    
     <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script is:inline>
-      // 1. Esperamos a que el navegador construya todo el HTML
-      document.addEventListener("DOMContentLoaded", () => {
-        // 2. Inicializamos AOS
+      const initApp = () => {
         AOS.init({
-          duration: 800, // Un poco más rápido (800ms) se siente más moderno
-          once: true, // La animación solo ocurre la primera vez que bajas
-          offset: 50, // Anima los elementos un poco antes de que aparezcan por completo
+          duration: 800,
+          once: true,
+          offset: 50,
         });
 
-        // 3. Pequeño truco de seguridad: refrescar las posiciones después de un instante
-        // por si alguna imagen o fuente tardó en cargar y empujó el contenido
         setTimeout(() => {
-          AOS.refresh();
+          AOS.refreshHard();
         }, 300);
+
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      };
+
+      document.addEventListener('astro:page-load', initApp);
+
+
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('.lang-switcher-btn')) {
+          sessionStorage.setItem('scrollPosition', window.scrollY);
+        }
       });
 
-      // Lógica del Tema oscuro (Mantenemos tu código que funciona perfecto)
-      const theme = localStorage.getItem("theme");
-      if (
-        theme === "dark" ||
-        (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
+      document.addEventListener('astro:after-swap', () => {
+        const savedScroll = sessionStorage.getItem('scrollPosition');
+        
+        if (savedScroll !== null) {
+          window.scrollTo({ 
+            top: parseInt(savedScroll, 10), 
+            behavior: 'instant' 
+          });
+          sessionStorage.removeItem('scrollPosition');
+        }
+      });
     </script>
+  </body>
+</html>
   </body>
 </html>
