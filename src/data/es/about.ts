@@ -9,7 +9,7 @@ export const aboutData: AboutData = {
   basicInfo: {
     email: "jaguilarlalvay@gmail.com",
     phone: "+593 98 779 8311",
-    address: "010114, Campus Balzay, Cuenca, Ecuador",
+    address: "010207, Campus Balzay, Cuenca, Ecuador",
     languages: "Español (Nativo), Inglés B1",
     orcid: "0009-0008-0363-2245"
   }

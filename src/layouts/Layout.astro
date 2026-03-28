@@ -1,22 +1,40 @@
 ---
 import "../styles/global.css";
 import WhatsAppButton from "../components/common/WhatsAppButton.astro";
-
 import { ClientRouter } from "astro:transitions";
 
 export interface Props {
   title: string;
   description?: string;
   lang?: string;
+  image?: string;
 }
 
 const {
   title,
   lang = "es",
   description = lang === "es"
-    ? "Portafolio profesional..."
-    : "Professional portfolio...",
+    ? "Portafolio profesional de Jonnathan Aguilar, Desarrollador Full Stack."
+    : "Professional portfolio of Jonnathan Aguilar, Full Stack Developer.",
+  image = "/images/profile.jpg", 
 } = Astro.props;
+
+// Lógica para SEO y URLs
+const { pathname, origin } = Astro.url;
+const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, "") : origin;
+
+const canonicalURL = `${siteUrl}${pathname}`;
+const currentLang = pathname.startsWith("/en") ? "en" : "es";
+const alternateLang = currentLang === "es" ? "en" : "es";
+
+let alternatePath = pathname.replace(`/${currentLang}`, `/${alternateLang}`);
+if (!alternatePath.startsWith(`/${alternateLang}`)) {
+  alternatePath = `/${alternateLang}/`;
+}
+
+const alternateURL = `${siteUrl}${alternatePath}`;
+const defaultURL = `${siteUrl}/es/`; 
+const socialImageURL = `${siteUrl}${image}`;
 ---
 
 <!doctype html>
@@ -28,6 +46,23 @@ const {
     <meta name="author" content="Jonnathan Aguilar" />
 
     <title>{title}</title>
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang={currentLang} href={canonicalURL} />
+    <link rel="alternate" hreflang={alternateLang} href={alternateURL} />
+    <link rel="alternate" hreflang="x-default" href={defaultURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageURL} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL} />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
