@@ -1,47 +1,99 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
-import LanguageSwitcher from './LanguageSwitcher.astro';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import ThemeToggle from "./ThemeToggle.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <header>
-  <nav class="fixed top-0 w-full bg-white dark:bg-gray-900 shadow-lg z-50 transition-colors border-b border-gray-200 dark:border-gray-700">
+  <nav
+    class="fixed top-0 w-full bg-white dark:bg-gray-900 shadow-lg z-50 transition-colors border-b border-gray-200 dark:border-gray-700"
+  >
     <div class="container mx-auto px-4 py-4">
       <div class="flex justify-between items-center">
-        
-        <a href={`/${lang}/`} class="text-2xl font-bold bg-linear-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent hover:opacity-80 transition">
+        <a
+          href={`/${lang}/`}
+          class="text-2xl font-bold bg-linear-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent hover:opacity-80 transition"
+        >
           Jonnathan Aguilar
         </a>
-        
-        <button id="mobile-menu-button" class="md:hidden text-gray-600 dark:text-gray-300">
+
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-gray-600 dark:text-gray-300"
+        >
           <i class="fas fa-bars text-2xl"></i>
         </button>
-        
+
         <div class="hidden md:flex items-center space-x-8">
-          <a href="#about" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">{t('nav.about')}</a>
-          <a href="#skills" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">{t('nav.skills')}</a>
-          <a href="#experience" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">{t('nav.experience')}</a>
-          <a href="#portfolio" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">{t('nav.portfolio')}</a>
-          <a href="#contact" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium">{t('nav.contact')}</a>
-          
+          <a
+            href="#about"
+            class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium"
+            >{t("nav.about")}</a
+          >
+          <a
+            href="#skills"
+            class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium"
+            >{t("nav.skills")}</a
+          >
+          <a
+            href="#experience"
+            class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium"
+            >{t("nav.experience")}</a
+          >
+          <a
+            href="#portfolio"
+            class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium"
+            >{t("nav.portfolio")}</a
+          >
+          <a
+            href="#contact"
+            class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition font-medium"
+            >{t("nav.contact")}</a
+          >
+
           <LanguageSwitcher />
           <ThemeToggle />
         </div>
       </div>
-      
+
       {/* Mobile Menu */}
-      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-100 dark:border-gray-800 pt-4">
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden mt-4 pb-4 border-t border-gray-100 dark:border-gray-800 pt-4"
+      >
         <div class="flex flex-col space-y-3">
-          <a href="#about" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">{t('nav.about')}</a>
-          <a href="#skills" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">{t('nav.skills')}</a>
-          <a href="#experience" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">{t('nav.experience')}</a>
-          <a href="#portfolio" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">{t('nav.portfolio')}</a>
-          <a href="#contact" class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2">{t('nav.contact')}</a>
-          
-          <div class="flex gap-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+          <a
+            href="#about"
+            class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2"
+            >{t("nav.about")}</a
+          >
+          <a
+            href="#skills"
+            class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2"
+            >{t("nav.skills")}</a
+          >
+          <a
+            href="#experience"
+            class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2"
+            >{t("nav.experience")}</a
+          >
+          <a
+            href="#portfolio"
+            class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2"
+            >{t("nav.portfolio")}</a
+          >
+          <a
+            href="#contact"
+            class="smooth-scroll text-gray-700 dark:text-gray-300 hover:text-primary-600 transition py-2"
+            >{t("nav.contact")}</a
+          >
+
+          <div
+            class="flex gap-4 pt-4 border-t border-gray-100 dark:border-gray-800"
+          >
             <LanguageSwitcher showTextOnMobile={true} />
             <ThemeToggle />
           </div>
@@ -51,36 +103,41 @@ const t = useTranslations(lang);
   </nav>
 </header>
 
-<script>
-  // Mobile menu toggle
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  
-  if (mobileMenuButton && mobileMenu) {
-    mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-  }
-  
-  // Smooth scroll
-  document.querySelectorAll('.smooth-scroll').forEach(anchor => {
-    anchor.addEventListener('click', function(this: HTMLElement, e: Event) {
+<script>  
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    // 1. Lógica del botón de menú hamburguesa
+    if (target.closest("#mobile-menu-button")) {
+      mobileMenu?.classList.toggle("hidden");
+      return; // Detenemos la ejecución aquí
+    }
+
+    // 2. Lógica del Smooth Scroll para los enlaces
+    const anchor = target.closest(".smooth-scroll");
+    if (anchor) {
       e.preventDefault();
-      const targetId = this.getAttribute('href');
+      const targetId = anchor.getAttribute("href");
+      
       if (targetId) {
-        const target = document.querySelector(targetId);
-        if (target) {
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
           const offset = 80;
-          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+          
           window.scrollTo({
             top: targetPosition,
-            behavior: 'smooth'
+            behavior: "smooth",
           });
-          if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.add('hidden');
+
+          // Cerrar menú móvil si está abierto
+          if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.add("hidden");
           }
         }
       }
-    });
+    }
   });
 </script>

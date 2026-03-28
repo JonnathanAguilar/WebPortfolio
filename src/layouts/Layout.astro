@@ -1,8 +1,8 @@
 ---
-import '../styles/global.css';
-import WhatsAppButton from '../components/common/WhatsAppButton.astro';
+import "../styles/global.css";
+import WhatsAppButton from "../components/common/WhatsAppButton.astro";
 
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter } from "astro:transitions";
 
 export interface Props {
   title: string;
@@ -10,45 +10,54 @@ export interface Props {
   lang?: string;
 }
 
-const { 
-  title, 
+const {
+  title,
   lang = "es",
-  description = lang === "es" ? "Portafolio profesional..." : "Professional portfolio..." 
+  description = lang === "es"
+    ? "Portafolio profesional..."
+    : "Professional portfolio...",
 } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Jonnathan Aguilar" />
-    
+
     <title>{title}</title>
-    
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="android-chrome-icon" sizes="192x192" href="/android-chrome-192x192.png" />
-    <link rel="android-chrome-icon" sizes="512x512" href="/android-chrome-512x512.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3b82f6" /> <meta name="msapplication-TileColor" content="#ffffff" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3b82f6" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="theme-color" content="#ffffff" />
-    
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
+
     <ClientRouter />
-    
+
     <slot name="head" />
   </head>
-  <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 antialiased overflow-x-hidden">
+  <body
+    class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 antialiased overflow-x-hidden"
+  >
     <slot />
 
     <WhatsAppButton />
-    
+
     <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script is:inline>
       const initApp = () => {
@@ -62,31 +71,34 @@ const {
           AOS.refreshHard();
         }, 300);
 
-        const theme = localStorage.getItem('theme');
-        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
+        const theme = localStorage.getItem("theme");
+        if (
+          theme === "dark" ||
+          (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
         } else {
-          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.remove("dark");
         }
       };
 
-      document.addEventListener('astro:page-load', initApp);
+      document.addEventListener("astro:page-load", initApp);
 
-      document.addEventListener('click', (e) => {
-        if (e.target.closest('.lang-switcher-btn')) {
-          sessionStorage.setItem('scrollPosition', window.scrollY);
+      document.addEventListener("click", (e) => {
+        if (e.target.closest(".lang-switcher-btn")) {
+          sessionStorage.setItem("scrollPosition", window.scrollY);
         }
       });
 
-      document.addEventListener('astro:after-swap', () => {
-        const savedScroll = sessionStorage.getItem('scrollPosition');
-        
+      document.addEventListener("astro:after-swap", () => {
+        const savedScroll = sessionStorage.getItem("scrollPosition");
+
         if (savedScroll !== null) {
-          window.scrollTo({ 
-            top: parseInt(savedScroll, 10), 
-            behavior: 'instant' 
+          window.scrollTo({
+            top: parseInt(savedScroll, 10),
+            behavior: "instant",
           });
-          sessionStorage.removeItem('scrollPosition');
+          sessionStorage.removeItem("scrollPosition");
         }
       });
     </script>
