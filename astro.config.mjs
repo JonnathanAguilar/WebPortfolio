@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://jonnathanaguilarlalvay.netlify.app',
+  site: 'https://jonnathanaguilar.netlify.app',
   trailingSlash: 'always',
   output: 'static',
   vite: {

@@ -7,5 +7,5 @@ export const heroData: HeroData = {
     image: "/images/profile.jpg",
     contact: "Contáctame",
     cv: "Descargar CV",
-    cvLink: "/docs/CV_JonnathanAguilar.pdf"
+    cvLink: "/docs/CV-JonnathanAguilar.pdf"
 };
