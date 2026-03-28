@@ -22,6 +22,7 @@ import { educationData } from '../../data/es/education';
 import { certificationsData } from '../../data/es/certifications';
 import { publicationsData } from '../../data/es/publications';
 import { referencesData } from '../../data/es/references';
+import { contactData } from '../../data/es/contact';
 ---
 
 <Layout title="Jonnathan Aguilar | Estudiante en Ciencias de la Computación" lang="es">
@@ -35,11 +36,6 @@ import { referencesData } from '../../data/es/references';
   <Certifications data={certificationsData} />
   <Publications data={publicationsData} />
   <References data={referencesData} />
-  <Contact 
-    email="jaguilarlalvay@gmail.com"
-    phone="+593 98 779 8311"
-    address="010114, Campus Balzay, Cuenca, Ecuador"
-    orcid="0009-0008-0363-2245"
-  />
+  <Contact data={contactData} />
   <Footer />
 </Layout>

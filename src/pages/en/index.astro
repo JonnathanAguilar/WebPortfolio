@@ -22,6 +22,7 @@ import { educationData } from '../../data/en/education';
 import { certificationsData } from '../../data/en/certifications';
 import { publicationsData } from '../../data/en/publications';
 import { referencesData } from '../../data/en/references';
+import { contactData } from '../../data/en/contact';
 ---
 
 <Layout title="Jonnathan Aguilar | Computer Science Student" lang="en">
@@ -35,11 +36,6 @@ import { referencesData } from '../../data/en/references';
   <Certifications data={certificationsData} />
   <Publications data={publicationsData} />
   <References data={referencesData} />
-  <Contact 
-    email="jaguilarlalvay@gmail.com"
-    phone="+593 98 779 8311"
-    address="010114, Campus Balzay, Cuenca, Ecuador"
-    orcid="0009-0008-0363-2245"
-  />
+  <Contact data={contactData} />
   <Footer />
 </Layout>
