@@ -10,7 +10,6 @@ export interface Props {
 
 const { email, phone, address, orcid } = Astro.props;
 
-// Inicializar i18n
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -37,8 +36,8 @@ const msgError = t('contact.error');
       
       <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col lg:flex-row">
         
-        {/* Lado Izquierdo: Formulario */}
-        <div class="w-full lg:w-3/5 p-8 md:p-12" data-aos="fade-right">
+        {/* Lado Izquierdo: Formulario */} 
+        <div class="w-full lg:w-3/5 p-6 md:p-12" data-aos="fade-right">
           <h3 class="text-2xl font-bold mb-8 text-gray-800 dark:text-white flex items-center gap-3">
             <i class="fas fa-paper-plane text-primary-500"></i>
             {t('contact.formTitle')}
@@ -121,7 +120,7 @@ const msgError = t('contact.error');
         </div>
         
         {/* Lado Derecho: Información de contacto */}
-        <div class="w-full lg:w-2/5 bg-linear-to-br from-primary-500 to-secondary-500 dark:from-gray-900 dark:to-gray-800 p-8 md:p-12 text-white flex flex-col transition-colors duration-300" data-aos="fade-left">
+        <div class="w-full lg:w-2/5 bg-linear-to-br from-primary-500 to-secondary-500 dark:from-gray-900 dark:to-gray-800 p-6 md:p-12 text-white flex flex-col transition-colors duration-300" data-aos="fade-left">
           <h3 class="text-2xl font-bold mb-8 text-white">{t('contact.infoTitle')}</h3>
           
           <div class="space-y-8 grow">
@@ -130,7 +129,7 @@ const msgError = t('contact.error');
               <div class="w-12 h-12 rounded-xl bg-white/20 dark:bg-white/10 group-hover:bg-white group-hover:text-primary-600 dark:group-hover:bg-primary-500 dark:group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300">
                 <i class="fas fa-map-marker-alt text-lg"></i>
               </div>
-              <div>
+              <div class="min-w-0">
                 <p class="font-semibold text-white/80 dark:text-gray-400 text-sm uppercase tracking-wide mb-1">{t('contact.location')}</p>
                 <p class="font-medium text-white">{address}</p>
               </div>
@@ -140,9 +139,9 @@ const msgError = t('contact.error');
               <div class="w-12 h-12 rounded-xl bg-white/20 dark:bg-white/10 group-hover:bg-white group-hover:text-primary-600 dark:group-hover:bg-primary-500 dark:group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300">
                 <i class="fas fa-phone-alt text-lg"></i>
               </div>
-              <div>
+              <div class="min-w-0">
                 <p class="font-semibold text-white/80 dark:text-gray-400 text-sm uppercase tracking-wide mb-1">{t('contact.phone')}</p>
-                <a href={`tel:${phone.replace(/\s/g, '')}`} target="_blank" class="font-medium text-white hover:text-white/80 dark:hover:text-primary-400 transition-colors">
+                <a href={`tel:${phone.replace(/\s/g, '')}`} target="_blank" class="font-medium text-white hover:text-white/80 dark:hover:text-primary-400 transition-colors break-word">
                   {phone}
                 </a>
               </div>
@@ -152,9 +151,9 @@ const msgError = t('contact.error');
               <div class="w-12 h-12 rounded-xl bg-white/20 dark:bg-white/10 group-hover:bg-white group-hover:text-primary-600 dark:group-hover:bg-primary-500 dark:group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300">
                 <i class="fas fa-envelope text-lg"></i>
               </div>
-              <div>
+              <div class="min-w-0">
                 <p class="font-semibold text-white/80 dark:text-gray-400 text-sm uppercase tracking-wide mb-1">{t('contact.email')}</p>
-                <a href={`mailto:${email}`} class="font-medium text-white hover:text-white/80 dark:hover:text-primary-400 transition-colors break-all">
+                <a href={`mailto:${email}`} class="font-medium text-white hover:text-white/80 dark:hover:text-primary-400 transition-colors break-all sm:break-normal">
                   {email}
                 </a>
               </div>
@@ -164,9 +163,9 @@ const msgError = t('contact.error');
               <div class="w-12 h-12 rounded-xl bg-white/20 dark:bg-white/10 group-hover:bg-white group-hover:text-primary-600 dark:group-hover:bg-primary-500 dark:group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300">
                 <i class="fab fa-orcid text-lg"></i>
               </div>
-              <div>
+              <div class="min-w-0">
                 <p class="font-semibold text-white/80 dark:text-gray-400 text-sm uppercase tracking-wide mb-1">{t('contact.orcid')}</p>
-                <a href={`https://orcid.org/${orcid}`} target="_blank" rel="noopener noreferrer" class="font-medium text-white hover:text-white/80 dark:hover:text-primary-400 transition-colors">
+                <a href={`https://orcid.org/${orcid}`} target="_blank" rel="noopener noreferrer" class="font-medium text-white hover:text-white/80 dark:hover:text-primary-400 transition-colors break-all sm:break-normal">
                   {orcid}
                 </a>
               </div>
@@ -199,7 +198,6 @@ const msgError = t('contact.error');
   </div>
 </section>
 
-{/* Pasamos las variables de Astro al script del cliente usando define:vars */}
 <script define:vars={{ msgSending, msgSuccess, msgError }}>
   const form = document.querySelector('form[name="contact"]');
   const statusDiv = document.getElementById('form-status');
