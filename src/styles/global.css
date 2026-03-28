@@ -40,7 +40,6 @@
   }
 }
 
-/* Scrollbar (esto sí puede quedarse con Tailwind + CSS normal) */
 ::-webkit-scrollbar {
   width: 10px;
 }
