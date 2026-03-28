@@ -33,6 +33,7 @@ const { data } = Astro.props;
                   <img 
                     src={ref.image} 
                     alt={ref.name} 
+                    loading="lazy"
                     class="w-full h-full object-cover" 
                     onerror={`this.src='https://ui-avatars.com/api/?name=${ref.name.replace(/ /g, '+')}&background=random&color=fff'`}
                   />
