@@ -5,38 +5,44 @@ export interface Props {
 }
 
 const { class: className = "", showTextOnMobile = false } = Astro.props;
+
+// Detectar el idioma actual leyendo la URL
+const pathname = Astro.url.pathname;
+const currentLang = pathname.startsWith("/en") ? "en" : "es";
+
+// Definir valores para el idioma opuesto (el destino)
+const targetLang = currentLang === "es" ? "en" : "es";
+
+// Reemplazar el prefijo del idioma en la URL actual para ir a la misma página en el otro idioma
+let targetUrl = pathname.replace(`/${currentLang}`, `/${targetLang}`);
+if (!targetUrl.startsWith(`/${targetLang}`)) {
+  targetUrl = `/${targetLang}/`; // Fallback de seguridad
+}
+
+const targetTextMobile = targetLang === "en" ? "English" : "Español";
+const targetTextDesktop = targetLang === "en" ? "EN" : "ES";
+const flagUrl =
+  targetLang === "en"
+    ? "https://flagcdn.com/w20/gb.png"
+    : "https://flagcdn.com/w20/es.png";
+
+// Texto dinámico para el tooltip según el idioma actual
+const tooltipPrefix = currentLang === "es" ? "Cambiar a" : "Change to";
 ---
 
-<button 
+<a
+  href={targetUrl}
   class={`lang-switcher-btn flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900 transition ${className}`}
-  title="Cambiar a Inglés"
+  title={`${tooltipPrefix} ${targetTextMobile}`}
 >
-  <img src="https://flagcdn.com/w20/gb.png" width="20" alt="English" class="rounded-xs shadow-sm" />
-  
-  {/* Texto: EN para escritorio, 'English' para móvil (dependiendo de las props) */}
+  <img
+    src={flagUrl}
+    width="20"
+    alt={targetTextMobile}
+    class="rounded-xs shadow-sm"
+  />
+
   <span class="text-sm font-medium">
-    {showTextOnMobile ? "English" : "EN"}
+    {showTextOnMobile ? targetTextMobile : targetTextDesktop}
   </span>
-</button>
-
-<script>
-  // Ejecutamos la lógica cuando el DOM esté listo
-  const setupLanguageAlert = () => {
-    const buttons = document.querySelectorAll('.lang-switcher-btn');
-    
-    buttons.forEach(btn => {
-      // Removemos eventos previos para evitar que la alerta salga doble si Astro hace un hot-reload
-      btn.removeEventListener('click', showComingSoonAlert);
-      btn.addEventListener('click', showComingSoonAlert);
-    });
-  };
-
-  const showComingSoonAlert = (e: Event) => {
-    e.preventDefault(); // Evita cualquier comportamiento por defecto
-    alert("🚀 ¡La versión en Inglés estará disponible próximamente! \n\n The English version is coming soon!");
-  };
-
-  // Inicialización
-  setupLanguageAlert();
-  document.addEventListener('astro:after-swap', setupLanguageAlert);
-</script>
+</a>

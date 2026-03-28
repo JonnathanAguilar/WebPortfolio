@@ -1,5 +1,6 @@
 ---
 import type { ExperienceItem } from '../../data/types';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 export interface Props {
   experiences: ExperienceItem[];
@@ -7,6 +8,10 @@ export interface Props {
 }
 
 const { experiences, title } = Astro.props;
+
+// Inicializar i18n
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="experience" class="py-24 bg-white dark:bg-gray-900">
@@ -71,7 +76,7 @@ const { experiences, title } = Astro.props;
                     rel="noopener noreferrer"
                     class="inline-flex items-center gap-2 mt-6 text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                   >
-                    <span>Visitar Sitio</span>
+                    <span>{t('experience.visitSite')}</span>
                     <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
                   </a>
                 )}

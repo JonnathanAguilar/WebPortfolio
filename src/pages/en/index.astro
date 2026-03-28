@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/common/Header.astro';
+import Hero from '../../components/sections/Hero.astro';
+import About from '../../components/sections/About.astro';
+import Skills from '../../components/sections/Skills.astro';
+import Experience from '../../components/sections/Experience.astro';
+import Portfolio from '../../components/sections/Portfolio.astro';
+import Education from '../../components/sections/Education.astro';
+import Certifications from '../../components/sections/Certifications.astro';
+import Publications from '../../components/sections/Publications.astro';
+import References from '../../components/sections/References.astro';
+import Contact from '../../components/sections/Contact.astro';
+import Footer from '../../components/common/Footer.astro';
+
+import { heroData } from '../../data/en/hero';
+import { aboutData } from '../../data/en/about';
+import { skillsData } from '../../data/en/skills';
+import { experienceData } from '../../data/en/experience';
+import { portfolioData } from '../../data/en/portfolio';
+import { educationData } from '../../data/en/education';
+import { certificationsData } from '../../data/en/certifications';
+import { publicationsData } from '../../data/en/publications';
+import { referencesData } from '../../data/en/references';
+---
+
+<Layout title="Jonnathan Aguilar | Computer Science Student" lang="en">
+  <Header />
+  <Hero data={heroData} />
+  <About data={aboutData} />
+  <Skills data={skillsData} />
+  <Experience experiences={experienceData.experiences} title={experienceData.title} />
+  <Portfolio projects={portfolioData.projects} title={portfolioData.title} />
+  <Education data={educationData} />
+  <Certifications data={certificationsData} />
+  <Publications data={publicationsData} />
+  <References data={referencesData} />
+  <Contact 
+    email="jaguilarlalvay@gmail.com"
+    phone="+593 98 779 8311"
+    address="010114, Campus Balzay, Cuenca, Ecuador"
+    orcid="0009-0008-0363-2245"
+  />
+  <Footer />
+</Layout>

@@ -1,11 +1,15 @@
 ---
 import type { CertificationsData } from '../../data/types';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 export interface Props {
   data: CertificationsData;
 }
 
 const { data } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="certifications" class="py-24 bg-gray-50 dark:bg-gray-800/50">
@@ -62,7 +66,7 @@ const { data } = Astro.props;
                       rel="noopener noreferrer"
                       class="inline-flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors w-max"
                     >
-                      <span>Ver credencial</span>
+                      <span>{t('certifications.viewCredential')}</span>
                       <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
                     </a>
                   )}

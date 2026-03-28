@@ -1,11 +1,16 @@
 ---
 import type { SkillsData } from '../../data/types';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 export interface Props {
   data: SkillsData;
 }
 
 const { data } = Astro.props;
+
+// Inicializar i18n
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const getCategoryIcon = (index: number) => {
   const icons = [
@@ -18,9 +23,9 @@ const getCategoryIcon = (index: number) => {
 };
 
 const getLevelText = (level: number) => {
-  if (level >= 80) return "Avanzado";
-  if (level >= 65) return "Intermedio";
-  return "Básico";
+  if (level >= 80) return t('skills.advanced');
+  if (level >= 65) return t('skills.intermediate');
+  return t('skills.basic');
 };
 ---
 

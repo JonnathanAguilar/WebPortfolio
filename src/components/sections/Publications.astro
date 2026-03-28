@@ -1,11 +1,16 @@
 ---
 import type { PublicationsData } from '../../data/types';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 export interface Props {
   data: PublicationsData;
 }
 
 const { data } = Astro.props;
+
+// Inicializar i18n
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="publications" class="py-24 bg-white dark:bg-gray-900">
@@ -54,7 +59,7 @@ const { data } = Astro.props;
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 mt-3 text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors w-max"
               >
-                <span>Ver Publicación (DOI: {pub.doi})</span>
+                <span>{t('publications.view')} (DOI: {pub.doi})</span>
                 <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
               </a>
             </div>

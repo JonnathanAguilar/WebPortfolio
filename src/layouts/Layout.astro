@@ -8,7 +8,11 @@ export interface Props {
   lang?: string;
 }
 
-const { title, description = "Portafolio profesional de Jonnathan Aguilar - Ingeniero en Ciencias de la Computación", lang = "es" } = Astro.props;
+const { 
+  title, 
+  lang = "es",
+  description = lang === "es" ? "Portafolio profesional..." : "Professional portfolio..." 
+} = Astro.props;
 ---
 
 <!DOCTYPE html>

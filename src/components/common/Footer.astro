@@ -1,16 +1,23 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
 <footer class="bg-white dark:bg-gray-950 border-t border-gray-100 dark:border-gray-800 py-12 md:py-16 transition-colors duration-300">
   <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
     <div class="flex flex-col items-center">
       
-      <a href="#" class="text-2xl md:text-3xl font-extrabold mb-6 bg-linear-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+      <a href={`/${lang}/`} class="text-2xl md:text-3xl font-extrabold mb-6 bg-linear-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
         Jonnathan Aguilar
       </a>
       
       <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-8 text-sm font-bold text-gray-500 dark:text-gray-400">
-        <a href="#about" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Sobre Mí</a>
-        <a href="#skills" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Habilidades</a>
-        <a href="#portfolio" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Proyectos</a>
-        <a href="#experience" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Experiencia</a>
+        <a href="#about" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{t('nav.about')}</a>
+        <a href="#skills" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{t('nav.skills')}</a>
+        <a href="#portfolio" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{t('nav.portfolio')}</a>
+        <a href="#experience" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{t('nav.experience')}</a>
       </div>
 
       <div class="flex justify-center gap-4 mb-10">
@@ -30,11 +37,11 @@
       
       <div class="text-center space-y-3">
         <p class="text-gray-500 dark:text-gray-400 text-sm font-medium">
-          &copy; {new Date().getFullYear()} Jonnathan Aguilar. Todos los derechos reservados.
+          &copy; {new Date().getFullYear()} Jonnathan Aguilar. {t('footer.rights')}
         </p>
         <p class="text-gray-400 dark:text-gray-500 text-xs flex items-center justify-center gap-1.5">
-          Diseñado con <i class="fas fa-heart text-red-500 animate-pulse"></i> usando 
-          <span class="font-bold text-gray-700 dark:text-gray-300">Astro</span> y 
+          {t('footer.designedWith')} <i class="fas fa-heart text-red-500 animate-pulse"></i> {t('footer.using')} 
+          <span class="font-bold text-gray-700 dark:text-gray-300">Astro</span> {t('footer.and')} 
           <span class="font-bold text-gray-700 dark:text-gray-300">Tailwind CSS</span>
         </p>
       </div>
